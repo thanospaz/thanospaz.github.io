@@ -1,2 +1,1 @@
 # thanospaz.github.io
-CV
