@@ -12,7 +12,7 @@
     :root{
       --bg:#0b0f14;
       --panel:#111826;
-      --muted:#8aa0b2;
+      --muted:#9fb3c7;
       --text:#e6edf3;
       --accent:#4aa3ff;
       --accent-2:#7bdcff;
@@ -48,7 +48,8 @@
     .chip{
       background:var(--chip);
       color:#cfe6ff;
-      padding:6px 12px;
+      padding:8px 14px;
+      min-height:40px;
       border-radius:999px;
       border:1px solid rgba(123,220,255,.18);
       text-decoration:none;
@@ -64,7 +65,8 @@
     }
     h2{
       margin:0 0 12px 0;
-      font-size:18px;
+      font-size:22px;
+      font-weight:600;
       letter-spacing:.3px;
       text-transform:uppercase;
       color:#cfe6ff;
@@ -76,7 +78,7 @@
     .muted{color:var(--muted)}
     .role{font-weight:600}
     .org{opacity:.95}
-    .date{color:#9bb4c8; font-size:14px}
+    .date{color:#9bb4c8; font-size:15px}
     .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background:var(--code); padding:2px 6px; border-radius:6px; border:1px solid rgba(255,255,255,.06)}
     .two-col{columns:2; column-gap:18px}
     @media (max-width:800px){ .two-col{columns:1} }
@@ -87,8 +89,10 @@
       font-size:14px;
     }
     a{color:var(--accent)}
+    a:hover, a:focus-visible{color:var(--accent-2)}
     .taglist{display:flex;flex-wrap:wrap;gap:8px}
-    .tag{padding:6px 10px; border-radius:999px; background:#0e1522; border:1px solid rgba(255,255,255,.06); font-size:13px; color:#cfe6ff}
+    .tag{padding:8px 14px; min-height:40px; border-radius:999px; background:#0e1522; border:1px solid rgba(255,255,255,.06); font-size:13px; color:#cfe6ff}
+    .chip:focus-visible, .tag:focus-visible, a:focus-visible{outline:2px solid var(--accent-2); outline-offset:2px; border-color:rgba(123,220,255,.35)}
     /* Print */
     @media print{
       body{background:#fff; color:#111; padding:0}
@@ -105,9 +109,9 @@
       <div class="subtitle">Unmanned Systems Engineer</div>
       <div class="contact">
         <span class="chip">Athens, Greece</span>
-        <a class="chip" href="tel:+306986305919">+30&nbsp;6986&nbsp;305&nbsp;919</a>
-        <a class="chip" href="mailto:thanospaza@gmail.com">thanospaza@gmail.com</a>
-        <a class="chip" href="https://www.linkedin.com/in/thanos-pazaridis" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="chip" href="tel:+306986305919" aria-label="Call Thanos Pazaridis at +30 6986 305 919">+30&nbsp;6986&nbsp;305&nbsp;919</a>
+        <a class="chip" href="mailto:thanospaza@gmail.com" aria-label="Email Thanos Pazaridis at thanospaza@gmail.com">thanospaza@gmail.com</a>
+        <a class="chip" href="https://www.linkedin.com/in/thanos-pazaridis" target="_blank" rel="noopener" aria-label="Open LinkedIn profile of Thanos Pazaridis">LinkedIn Profile</a>
       </div>
     </header>
 
@@ -120,6 +124,8 @@
           combining mechanical know‑how with embedded systems (Linux, Raspberry Pi, Arduino) and programming (C/C++, Python).
           Experienced in autonomous navigation and wireless telemetry. Led the autonomous conversion of a <strong>6.5&nbsp;m Special Forces vessel</strong>,
           demonstrated at NATO “ORION&nbsp;24”.
+          As an Army <strong>Warrant Officer (Ανθυπασπιστής)</strong>, led multi‑tier teams across operational and technical units, driving training, readiness,
+          and safe execution under demanding field conditions.
         </p>
       </section>
 
@@ -131,6 +137,7 @@
             <li><strong>Embedded:</strong> C/C++, Python, Arduino, Raspberry&nbsp;Pi</li>
             <li><strong>Robotics:</strong> ROS, autonomous navigation</li>
             <li><strong>Networking:</strong> Linux networking, TCP/IP, VLANs, security</li>
+            <li><strong>Leadership & Personnel Management:</strong> Team leadership, training, multi‑level command experience</li>
           </ul>
           <ul>
             <li><strong>Mechanical Integration:</strong> Payload mounts, wiring, RF planning</li>
@@ -138,6 +145,17 @@
             <li><strong>Electrical:</strong> Harness design, crimping, soldering</li>
             <li><strong>Testing:</strong> Field validation to NATO‑style procedures</li>
           </ul>
+        </div>
+      </section>
+
+      <section aria-labelledby="target-roles">
+        <h2 id="target-roles">Target Roles</h2>
+        <div class="taglist" aria-label="Target roles list">
+          <span class="tag">Unmanned Systems Engineer</span>
+          <span class="tag">Robotics Integration Engineer</span>
+          <span class="tag">Autonomy R&amp;D</span>
+          <span class="tag">Project Manager</span>
+          <span class="tag">CTO</span>
         </div>
       </section>
 
