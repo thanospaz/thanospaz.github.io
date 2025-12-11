@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prometheus Autonomous Systems - Business Plan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-elevated: #111727;
+      --accent: #ff6b35;
+      --accent-soft: rgba(255,107,53,0.15);
+      --accent-2: #39c0ff;
+      --text: #f5f7ff;
+      --muted: #a3acc5;
+      --border: #262c3f;
+      --success: #3dd68c;
+      --danger: #ff4b6b;
+      --warning: #ffb347;
+      --code: #181f33;
+      --shadow-soft: 0 18px 45px rgba(0,0,0,0.5);
+      --radius-lg: 18px;
+      --radius-md: 10px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #151c36 0, #050814 55%, #02030a 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 16px 80px;
+    }
+
+    .card {
+      background: linear-gradient(145deg, rgba(15,22,40,0.97), rgba(8,12,24,0.98));
+      border-radius: 24px;
+      padding: 32px 26px 40px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(255,255,255,0.04);
+      backdrop-filter: blur(18px);
+    }
+
+    header.hero {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 18px;
+    }
+
+    header.hero h1 {
+      font-size: 1.9rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin: 0;
+    }
+
+    header.hero h2 {
+      font-size: 1.1rem;
+      margin: 0;
+      color: var(--accent-2);
+      font-weight: 500;
+    }
+
+    .tagline {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 700px;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .meta-pill {
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: rgba(9,13,26,0.8);
+    }
+
+    .meta-pill strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    h3.section-title {
+      font-size: 1.2rem;
+      margin: 30px 0 6px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    h4 {
+      font-size: 1.05rem;
+      margin: 18px 0 6px;
+      color: #ffffff;
+    }
+
+    p {
+      margin: 6px 0 10px;
+      color: #d4daef;
+      font-size: 0.96rem;
+    }
+
+    strong {
+      color: #ffffff;
+    }
+
+    .stat-grid {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 8px;
+      margin-bottom: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 6px 0 14px;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    th {
+      background: rgba(9,14,29,0.9);
+      color: #f5f7ff;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) td {
+      background: rgba(13,18,33,0.85);
+    }
+
+    code, pre {
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background: var(--code);
+      border-radius: 10px;
+      border: 1px solid #262c3f;
+      font-size: 0.83rem;
+    }
+
+    pre {
+      padding: 10px 12px;
+      overflow-x: auto;
+      margin: 10px 0 14px;
+      white-space: pre-wrap;
+    }
+
+    ul {
+      padding-left: 18px;
+      margin: 5px 0 12px;
+    }
+
+    li {
+      margin-bottom: 4px;
+      color: #d4daef;
+      font-size: 0.95rem;
+    }
+
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 4px 0 10px;
+    }
+
+    .badge {
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(7,12,28,0.9);
+      color: var(--muted);
+    }
+
+    .badge.success {
+      border-color: rgba(61,214,140,0.35);
+      color: var(--success);
+      background: rgba(13,40,28,0.9);
+    }
+
+    .badge.risk {
+      border-color: rgba(255,75,107,0.4);
+      color: var(--danger);
+      background: rgba(43,10,20,0.9);
+    }
+
+    .badge.info {
+      border-color: rgba(57,192,255,0.35);
+      color: var(--accent-2);
+      background: rgba(7,24,36,0.9);
+    }
+
+    hr {
+      border: none;
+      border-bottom: 1px dashed var(--border);
+      margin: 24px 0 18px;
+    }
+
+    .footer-note {
+      margin-top: 22px;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        padding: 22px 18px 30px;
+      }
+      header.hero h1 {
+        font-size: 1.55rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <article class="card">
+      <header class="hero">
+        <h1>BUSINESS PLAN - ΑΥΤΟΝΟΜΑ ΣΥΣΤΗΜΑΤΑ ΑΜΥΝΗΣ</h1>
+        <h2>Prometheus Autonomous Systems – Ελληνικό Startup Σάρωσης και Αυτονομίας</h2>
+        <p class="tagline">
+          Ολοκληρωμένο επενδυτικό υπόμνημα για μια ελληνική εταιρεία loitering munitions &amp; swarming drones
+          με AI autonomy, training doctrine και αξιοποίηση ελληνικών &amp; ευρωπαϊκών αμυντικών προγραμμάτων.
+        </p>
+        <div class="meta-row">
+          <span class="meta-pill"><strong>Ημερομηνία:</strong> Δεκέμβριος 2025</span>
+          <span class="meta-pill"><strong>Έδρα:</strong> Αθήνα, Ελλάδα</span>
+          <span class="meta-pill"><strong>Αρχικό Seed:</strong> €300.000–€350.000</span>
+          <span class="meta-pill"><strong>Στόχος Y1:</strong> €550.000–€650.000 (grants + συμβόλαια)</span>
+        </div>
+      </header>
+
+      <!-- 0. Εκτελεστική Περίληψη -->
+      <h3 class="section-title">Εκτελεστική Περίληψη</h3>
+      <p>
+        Η Prometheus Autonomous Systems στοχεύει στην ανάπτυξη οικογένειας loitering munitions (SR/MR/LR), 
+        swarming drones και autonomy software με AI-powered target tracking, αποκεντρωμένη σάρωση και πλήρες 
+        training pipeline για χειριστές και επιτελεία. 
+      </p>
+      <p>
+        Η εταιρεία αξιοποιεί το ελληνικό κόστος λειτουργίας, τις φορολογικές ενισχύσεις του Law 5246/2025 και 
+        τα ευρωπαϊκά εργαλεία (EDF/EUDIS, DIANA, EIB venture debt), στοχεύοντας σε break-even στο Y2 και 
+        έσοδα €12–15M στο Y5 με πιθανό στρατηγικό exit €200–300M στο Y5–Y6.
+      </p>
+
+      <div class="stat-grid">
+        <table>
+          <thead>
+            <tr>
+              <th>Δείκτης</th>
+              <th>Τιμή</th>
+              <th>Σημειώσεις</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Αγορά Ευρωπαϊκών Drones (2025–2034)</td>
+              <td>€4,56B → €45,96B</td>
+              <td>~26% CAGR, κυριαρχία στρατιωτικού segment</td>
+            </tr>
+            <tr>
+              <td>AI-Powered Drones Market (2025–2030)</td>
+              <td>$821M → $2,75B</td>
+              <td>~27% CAGR, επιτάχυνση μετά τον πόλεμο στην Ουκρανία</td>
+            </tr>
+            <tr>
+              <td>Ελληνικός Defence Budget (2025)</td>
+              <td>€6,1B</td>
+              <td>Διπλασιασμός σε σχέση με το 2020</td>
+            </tr>
+            <tr>
+              <td>Ελληνικό LTDAP 2025–2037</td>
+              <td>€25B</td>
+              <td>&ge;25% υποχρεωτική συμμετοχή εγχώριας βιομηχανίας</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr />
+
+      <!-- 1. Ανάλυση Αγοράς -->
+      <h3 class="section-title">Ανάλυση Αγοράς</h3>
+
+      <h4>1.1 Χώρος Ευκαιρίας – Ελλάδα</h4>
+      <ul>
+        <li>Η Ελλάδα έχει ήδη προμηθευτεί εκατοντάδες loitering munitions τύπου Switchblade από ΗΠΑ, αλλά αναζητά εγχώριες/ευρωπαϊκές εναλλακτικές για λόγους κόστους, αυτονομίας και πολιτικής κυριαρχίας.</li>
+        <li>Ο νόμος 5246/2025 προσφέρει super-deductions έως 100% και επιπλέον cash benefit ~50% για defence/dual-use projects που επενδύουν 2026–2028.</li>
+        <li>Το Long-Term Defence Armament Plan (2025–2037, €25B) επιβάλλει τουλάχιστον 25% συμμετοχή ελληνικών εταιρειών, ανοίγοντας χώρο σε agile startups με hi-tech προϊόντα.</li>
+      </ul>
+
+      <h4>1.2 Χώρος Ευκαιρίας – Ευρώπη</h4>
+      <ul>
+        <li>Baykar (TR) κυριαρχεί στις εξαγωγές loitering munitions, ενώ UVision (IL) οδηγεί μεγάλο μέρος των αγορών του ΝΑΤΟ, χωρίς όμως αντίστοιχο ώριμο ευρωπαϊκό ανταγωνιστή.</li>
+        <li>Η ARQUIMEA στην Ισπανία έχει κλιμακώσει παραγωγή Q-SLAM-40/100 με δυνατότητα &gt;1.000 μονάδες/μήνα, επιβεβαιώνοντας τη ζήτηση αλλά αφήνοντας κενό σε πιο ευέλικτα, χαμηλότερου κόστους, AI-native swarming systems. [web:157][web:168]</li>
+        <li>Η ανάγκη για sovereign defence tech μετά τον πόλεμο στην Ουκρανία αυξάνει θεαματικά τα budgets για ευρωπαϊκές λύσεις AI defence και loitering drones. [web:159][web:174]</li>
+      </ul>
+
+      <h4>1.3 Ανταγωνιστική Ανάλυση – Ελληνικές Εταιρείες</h4>
+      <div class="stat-grid">
+        <table>
+          <thead>
+            <tr>
+              <th>Εταιρεία</th>
+              <th>Ίδρυση</th>
+              <th>Χρηματοδότηση</th>
+              <th>Κύριο Προϊόν</th>
+              <th>Σημείωση</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Delian Alliance Industries</td>
+              <td>2021</td>
+              <td>$22M+ (Seed + Series A)</td>
+              <td>Autonomous counter‑UAS, surveillance towers, autonomy suite</td>
+              <td>Ελληνικό success story σε AI defence, αλλά focus σε άμυνα, όχι kamikaze/loitering. [web:162][web:163][web:1]</td>
+            </tr>
+            <tr>
+              <td>Hellenic Defence Systems (EAS)</td>
+              <td>2004 (merger)</td>
+              <td>Δημόσια χρηματοδότηση</td>
+              <td>IRIX, πυρομαχικά, legacy συστήματα</td>
+              <td>Βαρύ, κρατικό σχήμα με αργό innovation cycle.</td>
+            </tr>
+            <tr>
+              <td>ALTUS LSA</td>
+              <td>–</td>
+              <td>–</td>
+              <td>UAS, counter‑UAS</td>
+              <td>Παρουσία σε εξαγωγές, όχι όμως ως AI-first loitering munitions player.</td>
+            </tr>
+            <tr>
+              <td><strong>Prometheus (προτεινόμενη)</strong></td>
+              <td>Q4 2025</td>
+              <td>€300–350k seed</td>
+              <td>Loitering munitions SR/MR/LR, swarming suite, training academy</td>
+              <td>Θέση σε niche: γρήγορο prototype‑to‑field, AI swarming + training‑centric μοντέλο.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        Συμπέρασμα: η Delian είναι η πιο επικίνδυνη εγχώρια αναφορά (και θετικό παράδειγμα για επενδυτές), 
+        αλλά κινείται κυρίως σε counter‑UAS και autonomy για αισθητήρες/effector, αφήνοντας χώρο για 
+        offensive loitering οικογένεια με δικό της training doctrine. [web:162][web:163]
+      </p>
+
+      <hr />
+
+      <!-- 2. Case Studies -->
+      <h3 class="section-title">Case Studies – Ελληνικά &amp; Ευρωπαϊκά Success Stories</h3>
+
+      <h4>2.1 Delian Alliance Industries (Ελλάδα)</h4>
+      <p>
+        Η Delian ξεκίνησε το 2021 (ως Lambda Automata) στην Αθήνα, από πρώην μηχανικό της Apple Special Projects, 
+        και μέσα σε ~4 χρόνια έφτασε συνολική χρηματοδότηση περίπου $22M (Seed ~€6M, Series A $14M το 2025) με 
+        βάση Ελλάδα/Ηνωμένο Βασίλειο. [web:1][web:162][web:163]
+      </p>
+      <p>
+        Το portfolio της καλύπτει προϊόντα όπως M4K15 (EW), Interceptigon (hard‑kill C‑UAS), αυτόνομους πύργους 
+        επιτήρησης LAST και την autonomy σουίτα Strikeweb, αποδεικνύοντας ότι ελληνική startup μπορεί να γίνει 
+        αναφορά στην ευρωπαϊκή άμυνα σε 3–4 χρόνια. [web:163][file:1]
+      </p>
+
+      <h4>2.2 Helsing (Γερμανία)</h4>
+      <p>
+        Η Helsing ιδρύθηκε το 2021 στο Μόναχο και σε λιγότερο από 4 χρόνια έφτασε σε αποτίμηση περίπου €12B μετά 
+        από Series D €600M το 2025, λειτουργώντας ως AI «εγκέφαλος» για ευρωπαϊκά αμυντικά συστήματα. [web:159][web:172]
+      </p>
+      <p>
+        Η εταιρεία συνεργάζεται με μεγάλους primes, ενσωματώνει AI σε πλατφόρμες όπως drones και μαχητικά και 
+        εστιάζει σε software‑first μοντέλο με συμβόλαια εκατομμυρίων ανά πελάτη, αποτελώντας benchmark για το 
+        πώς AI defence μπορεί να κλιμακωθεί σε ευρωπαϊκό unicorn. [web:159][web:151]
+      </p>
+
+      <h4>2.3 ARQUIMEA (Ισπανία)</h4>
+      <p>
+        Η ARQUIMEA, με ~20 χρόνια πορεία, έχει εξελιχθεί σε ευρωπαϊκό leader στα loitering munitions (Q‑SLAM‑40/100) 
+        και unmanned naval systems, με κάθετη παραγωγική ικανότητα &gt;1.000 μονάδες/μήνα και συμβόλαια με ΝΑΤΟ και 
+        μεγάλους primes. [web:157][web:168][web:171]
+      </p>
+      <p>
+        Το μοντέλο της δείχνει ότι η πλήρης καθετοποίηση, η αξιοποίηση φορολογικών κινήτρων R&amp;D και οι 
+        στρατηγικές συνεργασίες μπορούν να χτίσουν κερδοφόρο defence group χωρίς απαραίτητα mega‑VC γύρους. [web:157]
+      </p>
+
+      <hr />
+
+      <!-- 3. Προϊόν & Οδικός Χάρτης -->
+      <h3 class="section-title">Προϊόν &amp; Οδικός Χάρτης</h3>
+
+      <h4>3.1 Προϊοντική Δομή (Y1–Y2)</h4>
+      <div class="stat-grid">
+        <table>
+          <thead>
+            <tr>
+              <th>Προϊόν</th>
+              <th>Κατηγορία</th>
+              <th>Εμβέλεια</th>
+              <th>Φορτίο</th>
+              <th>Αιώρηση</th>
+              <th>AI Capability</th>
+              <th>Status Y1</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SR‑Drone</td>
+              <td>Quadcopter loitering</td>
+              <td>5–15 km</td>
+              <td>0,5–2 kg</td>
+              <td>20–40 min</td>
+              <td>Basic visual tracking</td>
+              <td>PoC → Prototype</td>
+            </tr>
+            <tr>
+              <td>MR‑Hawk</td>
+              <td>Fixed‑wing loitering</td>
+              <td>30–80 km</td>
+              <td>3–6 kg</td>
+              <td>60–120 min</td>
+              <td>Advanced EO/IR detection</td>
+              <td>Design → Prototype</td>
+            </tr>
+            <tr>
+              <td>Swarming Controller</td>
+              <td>Autonomy Suite</td>
+              <td>–</td>
+              <td>–</td>
+              <td>–</td>
+              <td>Decentralized multi‑agent RL</td>
+              <td>Software PoC</td>
+            </tr>
+            <tr>
+              <td>Training Academy</td>
+              <td>Services</td>
+              <td>–</td>
+              <td>–</td>
+              <td>–</td>
+              <td>Digital twin simulator</td>
+              <td>Curriculum design</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        Στο Y1 ο στόχος είναι πτητικό SR‑Drone prototype (&lt;80% mission success), πλήρης σχεδιασμός MR‑Hawk, 
+        swarming demo 5–10 drones σε simulation και έτοιμο training curriculum 40–60 ωρών με field trial report 
+        με ελληνικό φορέα αν επιτευχθεί pre‑commercial συμβόλαιο.
+      </p>
+
+      <h4>3.2 Y1 Milestones</h4>
+      <div class="stat-grid">
+        <table>
+          <thead>
+            <tr>
+              <th>Μήνας</th>
+              <th>Milestone</th>
+              <th>Owner</th>
+              <th>Πόροι</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>M1</td>
+              <td>Σύσταση εταιρείας, λογαριασμοί, initial hires</td>
+              <td>CEO</td>
+              <td>~€5.000</td>
+            </tr>
+            <tr>
+              <td>M1–M3</td>
+              <td>HCDI/DIANA προετοιμασία &amp; submissions</td>
+              <td>CEO + σύμβουλος</td>
+              <td>~€15.000</td>
+            </tr>
+            <tr>
+              <td>M2–M3</td>
+              <td>SR‑Drone proto (hover, waypoint nav)</td>
+              <td>CTO + engineers</td>
+              <td>Στον Y1 προϋπολογισμό</td>
+            </tr>
+            <tr>
+              <td>M4–M6</td>
+              <td>MoD RFI, αίτημα για field trials</td>
+              <td>CEO + BD</td>
+              <td>~€5.000</td>
+            </tr>
+            <tr>
+              <td>M7–M9</td>
+              <td>Field trials (αν εγκριθούν)</td>
+              <td>Ops Lead</td>
+              <td>~€50.000</td>
+            </tr>
+            <tr>
+              <td>M9–M10</td>
+              <td>EDF/EUDIS πρόταση &amp; swarming demo</td>
+              <td>CEO + CTO</td>
+              <td>~€20.000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <hr />
+
+      <!-- 4. Οικονομικό Πλάνο -->
+      <h3 class="section-title">Οικονομικό Πλάνο (Y1–Y5)</h3>
+
+      <h4>4.1 Βασικές Υποθέσεις</h4>
+      <ul>
+        <li>Seed €300k για 15–20% equity (implied pre‑money ~€1,2–1,7M).</li>
+        <li>Έσοδα Y1 ~€305k (grants + pre‑commercial + training), ζημία ~€239k και burn ~€45k/μήνα.</li>
+        <li>Y2 έσοδα ~€2,4M, θετικό καθαρό αποτέλεσμα ~€1,1M λόγω grants (EDF/EUDIS) και πρώτων πωλήσεων συστημάτων.</li>
+        <li>Y3 έσοδα €4–6M, Y5 έσοδα €12–15M με 100+ units/έτος και recurring training &amp; support.</li>
+      </ul>
+
+      <h4>4.2 Πηγές Κεφαλαίου (M0–M24)</h4>
+      <div class="stat-grid">
+        <table>
+          <thead>
+            <tr>
+              <th>Πηγή</th>
+              <th>Ποσό</th>
+              <th>Χρονοδιάγραμμα</th>
+              <th>Τύπος</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Seed investor</td>
+              <td>€300.000</td>
+              <td>M0</td>
+              <td>Equity 15–20%</td>
+            </tr>
+            <tr>
+              <td>HCDI / DIANA (Phase 1–2)</td>
+              <td>~€415.000</td>
+              <td>M2–M12</td>
+              <td>Συμβάσεις / grants</td>
+            </tr>
+            <tr>
+              <td>Pre‑commercial MoD</td>
+              <td>€200.000</td>
+              <td>M6–M9</td>
+              <td>Συμβόλαιο, 30% advance</td>
+            </tr>
+            <tr>
+              <td>EDF/EUDIS</td>
+              <td>~€1,5M</td>
+              <td>M12–M18</td>
+              <td>Grant (R&amp;D)</td>
+            </tr>
+            <tr>
+              <td>EIB venture debt + SAFE</td>
+              <td>~€4M</td>
+              <td>M12–M18</td>
+              <td>Debt / quasi‑equity</td>
+            </tr>
+            <tr>
+              <td>Law 5246 super‑deductions</td>
+              <td>~€1M ισοδύναμο</td>
+              <td>M18–M24</td>
+              <td>Tax benefit + cash back</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <pre>
+€300.000 Seed
+├─ €85.000  → Υποδομές (γραφείο, lab, εξοπλισμός)
+├─ €165.000 → Payroll (6 μήνες, 7 άτομα)
+├─ €30.000  → Νομικά, ασφάλειες, πιστοποιήσεις
+├─ €15.000  → Marketing &amp; ecosystem
+└─ €5.000   → Reserve
+      </pre>
+
+      <hr />
+
+      <!-- 5. Ομάδα &amp; Κίνδυνοι -->
+      <h3 class="section-title">Ομάδα &amp; Κίνδυνοι</h3>
+
+      <h4>5.1 Core Team (Y1)</h4>
+      <div class="stat-grid">
+        <table>
+          <thead>
+            <tr>
+              <th>Θέση</th>
+              <th>Ετήσιος Μισθός</th>
+              <th>Προφίλ</th>
+              <th>Κρισιμότητα</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CEO</td>
+              <td>€45.000</td>
+              <td>Defence/BD, capital raising, government relations</td>
+              <td>⭐⭐⭐</td>
+            </tr>
+            <tr>
+              <td>CTO</td>
+              <td>€50.000</td>
+              <td>AI/robotics, autonomy, embedded systems</td>
+              <td>⭐⭐⭐</td>
+            </tr>
+            <tr>
+              <td>Senior FW/AI Eng.</td>
+              <td>€32.000</td>
+              <td>ML + embedded</td>
+              <td>⭐⭐⭐</td>
+            </tr>
+            <tr>
+              <td>Control Systems Eng.</td>
+              <td>€30.000</td>
+              <td>Flight control, swarming</td>
+              <td>⭐⭐</td>
+            </tr>
+            <tr>
+              <td>HW/Mechanical Eng.</td>
+              <td>€28.000</td>
+              <td>Drone design</td>
+              <td>⭐⭐</td>
+            </tr>
+            <tr>
+              <td>Electrical Eng.</td>
+              <td>€26.000</td>
+              <td>Power, avionics</td>
+              <td>⭐⭐</td>
+            </tr>
+            <tr>
+              <td>Marketing/BD</td>
+              <td>€24.000</td>
+              <td>MoD/NATO pipeline</td>
+              <td>⭐⭐</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>5.2 Risk Matrix (high level)</h4>
+      <ul>
+        <li><strong>Regulatory &amp; flight permits:</strong> καθυστερήσεις 6–9 μηνών αν δεν γίνει έγκαιρα alignment με HCAA/στρατιωτικά πεδία βολής.</li>
+        <li><strong>Funding gap:</strong> αν EDF/PCP καθυστερήσουν, runway πέφτει σε 5–6 μήνες· λύση: bridge €200k από angels + milestones‑based συμβόλαια.</li>
+        <li><strong>Competition:</strong> επιτάχυνση Delian &amp; ευρωπαϊκών primes σε loitering· διαφοροποίηση μέσω training‑centric μοντέλου και χαμηλότερου κόστους ανά unit. [web:162][web:157]</li>
+      </ul>
+
+      <hr />
+
+      <!-- 6. Valuation & Exit -->
+      <h3 class="section-title">Valuation &amp; Exit Thesis</h3>
+
+      <h4>6.1 Y1 Valuation Scenarios</h4>
+      <div class="stat-grid">
+        <table>
+          <thead>
+            <tr>
+              <th>Σενάριο</th>
+              <th>Post‑money</th>
+              <th>Triggers</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Conservative</td>
+              <td>~€4–5M</td>
+              <td>~€300k revenue, επιτυχές Y1 αλλά χωρίς μεγάλο grant</td>
+            </tr>
+            <tr>
+              <td>Base</td>
+              <td>~€8–10M</td>
+              <td>~€800k revenue + EDF approval ή ισοδύναμο grant</td>
+            </tr>
+            <tr>
+              <td>Optimistic</td>
+              <td>~€15–20M</td>
+              <td>&gt;€2,4M revenue στο Y1/Y2 με ισχυρά field trials</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>6.2 Exit για Seed Investor (€300k για 15%)</h4>
+      <div class="stat-grid">
+        <table>
+          <thead>
+            <tr>
+              <th>Σενάριο</th>
+              <th>Exit Valuation</th>
+              <th>Timeline</th>
+              <th>Multiple</th>
+              <th>Σχόλιο</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Conservative (Delian‑like)</td>
+              <td>~€80M</td>
+              <td>Y6</td>
+              <td>~5,3x</td>
+              <td>Πιο αργή κλιμάκωση, σταθερά συμβόλαια. [web:162][web:1]</td>
+            </tr>
+            <tr>
+              <td>Base</td>
+              <td>~€250M</td>
+              <td>Y5</td>
+              <td>~16,7x</td>
+              <td>Συνδυασμός ευρωπαϊκών grants και ΝΑΤΟ συμβολαίων.</td>
+            </tr>
+            <tr>
+              <td>Bull (Helsing‑style)</td>
+              <td>~€500M</td>
+              <td>Y4</td>
+              <td>~33,3x</td>
+              <td>Ισχυρό AI moat + ταχεία κλιμάκωση, σπάνιο αλλά εφικτό. [web:159][web:172]</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        Ρεαλιστικά, blended αναμενόμενος IRR για seed investor εκτιμάται στην περιοχή 25–60% ετησίως με exit 
+        €200–300M σε 5–6 χρόνια, λαμβάνοντας υπόψη ευρωπαϊκά benchmarks όπως Delian, ARQUIMEA και Helsing. [web:162][web:159][web:157]
+      </p>
+
+      <hr />
+
+      <!-- 7. Closing -->
+      <h3 class="section-title">Investment Rationale – One Slide Version</h3>
+      <ul>
+        <li>Σαφές κενό για ευρωπαϊκά, cost‑effective, AI‑native loitering munitions με swarming και training doctrine.</li>
+        <li>Ισχυρή μακρο‑τάση: αυξημένα ευρωπαϊκά defence budgets και ζήτηση για sovereign AI defence tech. [web:159][web:174]</li>
+        <li>Ελληνική βάση με χαμηλότερο κόστος και υποχρεωτική συμμετοχή εγχώριας βιομηχανίας σε προγράμματα €25B+.</li>
+        <li>Αποδεδειγμένα παραδείγματα: Delian ως ελληνικό AI defence success, ARQUIMEA ως ευρωπαϊκό loitering leader, Helsing ως AI unicorn benchmark. [web:162][web:157][web:159]</li>
+        <li>Σαφής πορεία από seed → grants/PCP → profitability Y2 → στρατηγικό exit σε ευρωπαϊκό prime Y5–Y6.</li>
+      </ul>
+
+      <p class="footer-note">
+        Προετοιμάστηκε για χρήση σε παρουσιάσεις προς επενδυτές, funds και στρατηγικούς εταίρους. 
+        Το περιεχόμενο είναι ενδεικτικό, δεν αποτελεί δημόσια προσφορά τίτλων και σέβεται πλήρως τα δικαιώματα 
+        πνευματικής ιδιοκτησίας των αναφερόμενων εταιρειών και πηγών.
+      </p>
+    </article>
+  </div>
+</body>
+</html>
