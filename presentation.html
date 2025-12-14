@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hawk Labs - Ποιοί Είμαστε</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-elevated: #111727;
+      --accent: #ff6b35;
+      --accent-soft: rgba(255,107,53,0.15);
+      --accent-2: #39c0ff;
+      --text: #f5f7ff;
+      --muted: #a3acc5;
+      --border: #262c3f;
+      --success: #3dd68c;
+      --danger: #ff4b6b;
+      --warning: #ffb347;
+      --code: #181f33;
+      --shadow-soft: 0 18px 45px rgba(0,0,0,0.5);
+      --radius-lg: 18px;
+      --radius-md: 10px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #151c36 0, #050814 55%, #02030a 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 16px 80px;
+    }
+
+    .card {
+      background: linear-gradient(145deg, rgba(15,22,40,0.97), rgba(8,12,24,0.98));
+      border-radius: 24px;
+      padding: 32px 26px 40px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(255,255,255,0.04);
+      backdrop-filter: blur(18px);
+    }
+
+    header.hero {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 18px;
+    }
+
+    header.hero h1 {
+      font-size: 1.9rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin: 0;
+    }
+
+    header.hero h2 {
+      font-size: 1.1rem;
+      margin: 0;
+      color: var(--accent-2);
+      font-weight: 500;
+    }
+
+    .tagline {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 780px;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .meta-pill {
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: rgba(9,13,26,0.8);
+    }
+
+    .meta-pill strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    h3.section-title {
+      font-size: 1.2rem;
+      margin: 30px 0 6px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ff6b35;
+    }
+
+    h4 {
+      font-size: 1.05rem;
+      margin: 18px 0 6px;
+      color: #ffffff;
+    }
+
+    p {
+      margin: 6px 0 10px;
+      color: #d4daef;
+      font-size: 0.96rem;
+    }
+
+    strong {
+      color: #ffffff;
+    }
+
+    .stat-grid {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 8px;
+      margin-bottom: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 6px 0 14px;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    th {
+      background: rgba(9,14,29,0.9);
+      color: #f5f7ff;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) td {
+      background: rgba(13,18,33,0.85);
+    }
+
+    ul {
+      padding-left: 18px;
+      margin: 5px 0 12px;
+    }
+
+    li {
+      margin-bottom: 4px;
+      color: #d4daef;
+      font-size: 0.95rem;
+    }
+
+    .badge-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 4px 0 10px;
+    }
+
+    .badge {
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(7,12,28,0.9);
+      color: var(--muted);
+    }
+
+    .badge.success {
+      border-color: rgba(61,214,140,0.35);
+      color: var(--success);
+      background: rgba(13,40,28,0.9);
+    }
+
+    .badge.risk {
+      border-color: rgba(255,75,107,0.4);
+      color: var(--danger);
+      background: rgba(43,10,20,0.9);
+    }
+
+    .badge.info {
+      border-color: rgba(57,192,255,0.35);
+      color: var(--accent-2);
+      background: rgba(7,24,36,0.9);
+    }
+
+    hr {
+      border: none;
+      border-bottom: 1px dashed var(--border);
+      margin: 24px 0 18px;
+    }
+
+    .btn-link {
+      display: inline-block;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid var(--accent);
+      padding: 10px 24px;
+      border-radius: var(--radius-md);
+      transition: all 0.2s ease;
+    }
+
+    .btn-link:hover {
+      background: var(--accent-soft);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        padding: 22px 18px 30px;
+      }
+      header.hero h1 {
+        font-size: 1.55rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <article class="card">
+      <header class="hero">
+        <h1>HAWK LABS</h1>
+        <h2>Ukrainian-style ευελιξία, Ελληνική τεχνογνωσία</h2>
+        <p class="tagline">
+          Γεφυρώνουμε το χάσμα μεταξύ των ακριβών αμυντικών συστημάτων και των αναλώσιμων λύσεων που απαιτεί το σύγχρονο πεδίο μάχης.
+        </p>
+        <div class="meta-row">
+            <span class="meta-pill"><strong>Έδρα:</strong> Αθήνα</span>
+            <span class="meta-pill"><strong>Focus:</strong> Tactical UAS & Doctrine</span>
+            <span class="meta-pill"><strong>Status:</strong> Operational (TRL 7)</span>
+        </div>
+      </header>
+
+      <h3 class="section-title">Ποιοί Είμαστε</h3>
+      <p>
+        Η <strong>Hawk Labs</strong> είναι μια πρότυπη μονάδα σχεδιασμού, παραγωγής και εκπαίδευσης. 
+        Δεν πουλάμε απλώς drones. Προσφέρουμε <strong>επιχειρησιακή ικανότητα</strong>.
+      </p>
+      <p>
+        Με έδρα την Αθήνα και δική μας γραμμή παραγωγής, εστιάζουμε στην ανάπτυξη <strong>Software-defined Hardware</strong>. 
+        Πιστεύουμε ότι η υπεροχή στο πεδίο δεν έρχεται μόνο από το μέταλλο, αλλά από τον κώδικα, την τεχνητή νοημοσύνη και την ταχύτητα προσαρμογής.
+      </p>
+
+      <h3 class="section-title">Η Αποστολή μας</h3>
+      <p>
+        Η Ελλάδα βρίσκεται σε φάση εκσυγχρονισμού του δόγματος της. Η ζήτηση για <strong>εγχώρια, φθηνά και αναλώσιμα συστήματα</strong> είναι επιτακτική.
+      </p>
+      <p>
+        Στόχος μας είναι να παρέχουμε στις Ελληνικές Δυνάμεις και την Πολιτική Προστασία εργαλεία που είναι:
+      </p>
+      <ul>
+        <li><strong>Οικονομικά αποδοτικά:</strong> Ώστε να μπορούν να χρησιμοποιηθούν μαζικά (Mass/Swarm).</li>
+        <li><strong>Ευέλικτα:</strong> Ανοιχτή αρχιτεκτονική που αναβαθμίζεται συνεχώς.</li>
+        <li><strong>Άμεσα διαθέσιμα:</strong> Παραγωγή και υποστήριξη εντός συνόρων.</li>
+      </ul>
+
+      <h3 class="section-title">Τι Κατασκευάζουμε</h3>
+      
+      <div class="stat-grid">
+        <table>
+          <thead>
+            <tr>
+              <th>Κατηγορία</th>
+              <th>Πλατφόρμες</th>
+              <th>Ρόλος</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Kinetic (The Spear)</strong></td>
+              <td>
+                <strong>Hawk-K4</strong> (Quad)<br/>
+                <strong>Hawk-K8</strong> (Fixed-Wing)
+              </td>
+              <td>
+                Kamikaze drones με <strong>AI guidance</strong> για χτυπήματα ακριβείας. 
+                Το K4 για τακτική χρήση, το K8 για στρατηγικό βάθος.
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Surveillance (The Eyes)</strong></td>
+              <td><strong>Hawk-Vision</strong></td>
+              <td>
+                Επιτήρηση μεγάλης εμβέλειας για στρατιωτική χρήση (ISR) 
+                και πολιτική προστασία (ανίχνευση πυρκαγιών).
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Doctrine (The Mind)</strong></td>
+              <td><strong>Training & Field Labs</strong></td>
+              <td>
+                Μεταφορά τεχνογνωσίας από το μέτωπο της Ουκρανίας. 
+                Εκπαίδευση χειριστών FPV, τακτικές anti-jamming, field repairs.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="section-title">Η Φιλοσοφία μας</h3>
+      <p>
+        Λειτουργούμε με το <strong>mindset της Anduril Industries</strong>.
+      </p>
+      <ul>
+        <li><strong>Επιθετική Ανάπτυξη:</strong> Κινούμαστε γρήγορα, σπάμε το κατεστημένο των αργών προμηθειών.</li>
+        <li><strong>Mission Outcomes:</strong> Μας ενδιαφέρει αν το σύστημα ολοκληρώνει την αποστολή, όχι αν πληροί παρωχημένες προδιαγραφές.</li>
+        <li><strong>Κάθετη Ολοκλήρωση:</strong> Ελέγχουμε το σχεδιασμό, το software και την παραγωγή.</li>
+      </ul>
+
+      <h3 class="section-title">Η Ομάδα</h3>
+      <p>
+        Η Hawk Labs αποτελείται από μια συμπαγή ομάδα <strong>6 βασικών στελεχών</strong> με πάθος για την αεροναυπηγική και την τεχνολογία.
+      </p>
+      <div class="badge-list">
+        <span class="badge info">R&D Engineers</span>
+        <span class="badge info">Software Developers</span>
+        <span class="badge info">Operations Experts</span>
+        <span class="badge success">Pilots / Trainers</span>
+      </div>
+      <p>
+        Συνδυάζουμε την εμπειρία στο hardware assembly με την εξειδίκευση στα δίκτυα επικοινωνιών και την τεχνητή νοημοσύνη.
+      </p>
+
+      <hr />
+      
+      <div class="meta-row" style="justify-content: center; margin-top: 30px;">
+        <a href="B_plan.html" class="btn-link">Δείτε το Business Plan</a>
+      </div>
+
+    </article>
+  </div>
+</body>
+</html>
