@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Triton Labs — Ενημέρωση Ιδρυτών v2 — Q1 2026</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#0a0f1e;--bg2:#111827;--card:#1a2235;
+--accent:#3b82f6;--accent-g:rgba(59,130,246,.15);
+--green:#10b981;--green-g:rgba(16,185,129,.15);
+--amber:#f59e0b;--red:#ef4444;
+--txt:#e2e8f0;--muted:#94a3b8;--border:#2d3748;
+--font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+--mono:"JetBrains Mono","Fira Code","Cascadia Code",monospace;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--txt);font-family:var(--font);line-height:1.7;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{text-transform:uppercase;letter-spacing:.06em;line-height:1.2}
+h1{font-size:clamp(2rem,5vw,3.5rem);color:#fff;margin-bottom:.5rem}
+h2{font-size:clamp(1.4rem,3vw,2rem);color:var(--accent);margin-bottom:1.2rem}
+h3{font-size:1.15rem;color:#fff;margin-bottom:.6rem}
+h4{font-size:.95rem;color:var(--accent);margin-bottom:.4rem;letter-spacing:.1em}
+p{color:var(--muted);max-width:800px;font-size:1.05rem}
+.mono{font-family:var(--mono);font-size:.78rem;color:var(--accent);letter-spacing:.12em;display:block;margin-bottom:.6rem}
+nav{position:fixed;top:0;left:0;width:100%;background:rgba(10,15,30,.92);backdrop-filter:blur(12px);z-index:1000;border-bottom:1px solid var(--border);padding:0 20px}
+nav .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:54px}
+nav .logo{font-family:var(--mono);font-weight:700;font-size:1rem;color:#fff;letter-spacing:.15em}
+nav .logo span{color:var(--accent)}
+nav ul{list-style:none;display:flex;gap:6px;flex-wrap:wrap}
+nav ul li a{font-size:.7rem;padding:5px 10px;color:var(--muted);border-radius:4px;letter-spacing:.08em;text-transform:uppercase;transition:all .2s}
+nav ul li a:hover,nav ul li a.active{color:#fff;background:var(--accent-g);text-decoration:none}
+.nav-toggle{display:none;background:none;border:1px solid var(--border);color:var(--txt);padding:6px 10px;border-radius:4px;cursor:pointer;font-size:1.2rem}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px;width:100%}
+section{min-height:100vh;display:flex;align-items:center;padding:100px 0 80px;position:relative}
+section:nth-child(odd){background:var(--bg)}
+section:nth-child(even){background:var(--bg2)}
+section::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:60%;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:28px;transition:all .25s}
+.card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.card h3{border-bottom:1px solid var(--border);padding-bottom:10px;margin-bottom:12px}
+.tag{display:inline-block;font-family:var(--mono);font-size:.68rem;padding:3px 10px;border-radius:20px;margin-right:6px;margin-bottom:6px}
+.tag-defense{background:rgba(59,130,246,.15);color:var(--accent);border:1px solid rgba(59,130,246,.3)}
+.tag-commercial{background:var(--green-g);color:var(--green);border:1px solid rgba(16,185,129,.3)}
+.tag-warn{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.3)}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.grid-3>.card{height:100%}
+.grid-span-all{grid-column:1/-1}
+.card-flex{display:flex;flex-direction:column}
+.push-bottom{margin-top:auto;padding-top:12px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.stat-row{display:flex;gap:24px;flex-wrap:wrap;margin:30px 0}
+.stat-box{flex:1;min-width:180px;text-align:center;padding:28px 16px;background:var(--card);border:1px solid var(--border);border-radius:10px}
+.stat-box .num{font-size:2.4rem;font-weight:800;color:#fff;font-family:var(--mono);line-height:1}
+.stat-box .num .unit{font-size:1rem;color:var(--accent);font-weight:400}
+.stat-box .label{font-size:.78rem;color:var(--muted);margin-top:8px;text-transform:uppercase;letter-spacing:.1em}
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.92rem}
+th{background:rgba(59,130,246,.1);color:var(--accent);text-align:left;padding:12px 16px;font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;border-bottom:2px solid var(--accent)}
+td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--muted)}
+tr:hover td{background:rgba(255,255,255,.02)}
+td:first-child{color:var(--txt);font-weight:500}
+.bar-chart{margin:20px 0}
+.bar-row{display:flex;align-items:center;margin-bottom:12px;gap:12px}
+.bar-label{width:140px;font-size:.82rem;color:var(--muted);text-align:right;flex-shrink:0}
+.bar-track{flex:1;height:28px;background:var(--card);border-radius:6px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;font-family:var(--mono);font-size:.72rem;color:#fff;font-weight:600;transition:width 1s ease}
+.bar-fill.blue{background:linear-gradient(90deg,var(--accent),#60a5fa)}
+.bar-fill.green{background:linear-gradient(90deg,var(--green),#34d399)}
+.bar-fill.amber{background:linear-gradient(90deg,var(--amber),#fbbf24)}
+.bar-fill.red{background:linear-gradient(90deg,var(--red),#f87171)}
+.timeline{position:relative;padding-left:30px;margin:30px 0}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--border)}
+.tl-item{position:relative;margin-bottom:28px;padding-left:20px}
+.tl-item::before{content:'';position:absolute;left:-26px;top:6px;width:12px;height:12px;border-radius:50%;border:2px solid var(--accent);background:var(--bg)}
+.tl-item.done::before{background:var(--green);border-color:var(--green)}
+.tl-item.critical::before{background:var(--accent);border-color:var(--accent)}
+.tl-item .tl-date{font-family:var(--mono);font-size:.72rem;color:var(--accent)}
+.tl-item .tl-title{color:#fff;font-weight:600;font-size:.95rem}
+.tl-item .tl-desc{color:var(--muted);font-size:.85rem}
+.badge{display:inline-block;font-family:var(--mono);font-size:.65rem;padding:4px 12px;border-radius:20px;letter-spacing:.1em;text-transform:uppercase}
+.badge-blue{background:var(--accent-g);color:var(--accent);border:1px solid rgba(59,130,246,.3)}
+.badge-green{background:var(--green-g);color:var(--green);border:1px solid rgba(16,185,129,.3)}
+.badge-amber{background:rgba(245,158,11,.1);color:var(--amber);border:1px solid rgba(245,158,11,.3)}
+.badge-red{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.3)}
+.cta-btn{display:inline-block;padding:14px 36px;background:var(--accent);color:#fff;font-weight:700;font-size:1rem;border-radius:8px;letter-spacing:.06em;text-transform:uppercase;transition:all .2s;border:none;cursor:pointer}
+.cta-btn:hover{background:#2563eb;transform:translateY(-2px);box-shadow:0 8px 30px rgba(59,130,246,.3);text-decoration:none}
+.cta-outline{background:transparent;border:2px solid var(--accent);color:var(--accent)}
+.cta-outline:hover{background:var(--accent);color:#fff}
+.hero-section{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(180deg,#0a0f1e 0%,#111827 100%);position:relative;overflow:hidden}
+.hero-section::before{content:'';position:absolute;top:50%;left:50%;width:600px;height:600px;background:radial-gradient(circle,rgba(59,130,246,.08) 0%,transparent 70%);transform:translate(-50%,-50%);pointer-events:none}
+.hero-badge{display:inline-block;font-family:var(--mono);font-size:.7rem;padding:6px 20px;border:1px solid var(--accent);border-radius:30px;color:var(--accent);letter-spacing:.15em;margin-bottom:24px}
+.hero-tagline{font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--muted);font-weight:300;margin:16px auto 30px;max-width:700px}
+.hero-meta{display:flex;gap:32px;justify-content:center;margin-top:40px;flex-wrap:wrap}
+.hero-meta div{text-align:center}
+.hero-meta .val{font-family:var(--mono);font-size:1.2rem;color:#fff;font-weight:700}
+.hero-meta .lbl{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
+.section-header{text-align:center;margin-bottom:50px}
+.section-header p{margin:0 auto}
+.spec-list{list-style:none;padding:0;margin:12px 0}
+.spec-list li{padding:4px 0;font-size:.88rem;color:var(--muted);display:flex;gap:8px}
+.spec-list li::before{content:'▸';color:var(--accent);flex-shrink:0}
+.team-card{text-align:center;padding:30px 20px;display:flex;flex-direction:column}
+.team-card .badge-row{margin-top:auto;padding-top:10px}
+.team-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--green));display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:1.4rem;color:#fff;font-weight:700}
+.team-card .role{color:var(--accent);font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;margin-bottom:8px}
+.scroll-ind{position:fixed;top:54px;left:0;height:3px;background:var(--accent);z-index:1001;transition:width .1s}
+.callout{padding:20px 24px;border-radius:10px;margin:20px 0;font-size:.92rem}
+.callout-warn{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-left:4px solid var(--amber)}
+.callout-info{background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.3);border-left:4px solid var(--accent)}
+.callout-danger{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);border-left:4px solid var(--red)}
+.callout-success{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.3);border-left:4px solid var(--green)}
+@media print{
+nav,.scroll-ind{display:none}
+section{min-height:auto;page-break-inside:avoid;padding:30px 0;break-inside:avoid}
+body{background:#fff;color:#1a1a1a}
+.card{border:1px solid #ddd;box-shadow:none}
+h2{color:#1e40af}
+.stat-box .num{color:#1a1a1a}
+td,th{color:#1a1a1a}
+}
+@media(max-width:768px){
+.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+nav ul{display:none;position:absolute;top:54px;left:0;width:100%;background:rgba(10,15,30,.97);flex-direction:column;padding:16px;border-bottom:1px solid var(--border)}
+nav ul.open{display:flex}
+.nav-toggle{display:block}
+.stat-row{flex-direction:column}
+.hero-meta{flex-direction:column;gap:16px}
+.bar-label{width:90px;font-size:.72rem}
+section{padding:80px 0 60px}
+table{font-size:.78rem}
+th,td{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="nav-inner">
+<div class="logo">TRITON<span>LABS</span></div>
+<button class="nav-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')" aria-label="Μενού">☰</button>
+<ul>
+<li><a href="#cover">Αρχή</a></li>
+<li><a href="#status">Κατάσταση</a></li>
+<li><a href="#vision">Όραμα</a></li>
+<li><a href="#products">Προϊόντα</a></li>
+<li><a href="#market">Αγορά</a></li>
+<li><a href="#operations">Λειτουργίες</a></li>
+<li><a href="#team">Ομάδα</a></li>
+<li><a href="#equity">Equity</a></li>
+<li><a href="#financials">Οικονομικά</a></li>
+<li><a href="#risks">Ρίσκα</a></li>
+<li><a href="#roadmap">Χρονοδιάγραμμα</a></li>
+<li><a href="#nextsteps">Επόμενα</a></li>
+</ul>
+</div>
+</nav>
+<div class="scroll-ind" id="scrollInd"></div>
+
+<!-- ============ ΕΞΩΦΥΛΛΟ ============ -->
+<section class="hero-section" id="cover">
+<div class="wrap" style="text-align:center">
+<div class="hero-badge">ΕΣΩΤΕΡΙΚΟ ΕΓΓΡΑΦΟ — ΙΔΡΥΤΕΣ — Q1 2026 — v2</div>
+<h1 style="font-size:clamp(2.5rem,6vw,4.2rem);margin-bottom:8px">TRITON LABS</h1>
+<p class="hero-tagline">Ενημέρωση Ιδρυτών v2<br>Ρεαλιστικά Νούμερα. Ειλικρινείς Προβλέψεις. Σαφές Πλάνο.</p>
+<p style="font-size:.95rem;max-width:650px;margin:0 auto 30px">Αυτό είναι το διορθωμένο έγγραφο μετά από εσωτερική αξιολόγηση. Τα οικονομικά είναι ρεαλιστικά — το Έτος 1 είναι ζημιογόνο (αυτό είναι φυσιολογικό). Η στρατηγική παραμένει ίδια, τα νούμερα αντικατοπτρίζουν την πραγματικότητα.</p>
+<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+<a href="#nextsteps" class="cta-btn">Επόμενα Βήματα</a>
+<a href="#equity" class="cta-btn cta-outline">Equity &amp; Ρόλοι</a>
+</div>
+<div class="hero-meta">
+<div><div class="val">3+1</div><div class="lbl">Ιδρυτές + CEO</div></div>
+<div><div class="val">€200K</div><div class="lbl">Κεφάλαιο Επενδυτή</div></div>
+<div><div class="val">TRL 3-4</div><div class="lbl">Τεχνική Ωριμότητα</div></div>
+<div><div class="val">Dual-Use</div><div class="lbl">Άμυνα &amp; Ναυτιλία</div></div>
+</div>
+</div>
+</section>
+
+<!-- ============ ΠΟΥ ΕΙΜΑΣΤΕ ΣΗΜΕΡΑ ============ -->
+<section id="status">
+<div class="wrap">
+<div class="section-header">
+<span class="mono">00 // ΠΟΥ ΕΙΜΑΣΤΕ ΣΗΜΕΡΑ — ΕΙΛΙΚΡΙΝΑ</span>
+<h2>Τρέχουσα Κατάσταση — Φεβρουάριος 2026</h2>
+<p>Πριν μιλήσουμε για το όραμα, ας δούμε τι ΥΠΑΡΧΕΙ σήμερα. Καμία υπερβολή, καμία ωραιοποίηση.</p>
+</div>
+
+<div class="grid-2">
+<div class="card" style="border-left:3px solid var(--green)">
+<h3>✅ Τι Υπάρχει</h3>
+<ul class="spec-list">
+<li><strong>CAD σχέδια:</strong> Ολοκληρωμένα για Spectre (A1)</li>
+<li><strong>COTS parts:</strong> Παραγγελμένα — βασικά εξαρτήματα σε χέρια μας</li>
+<li><strong>3D printed μέρη:</strong> Πρώτα δομικά στοιχεία εκτυπωμένα</li>
+<li><strong>Assembled drone (COTS):</strong> Λειτουργικό — πρώτες πτήσεις σε εξέλιξη</li>
+<li><strong>AI Demo:</strong> Working object detection demo (Cortex concept)</li>
+<li><strong>Στρατιωτικό background:</strong> CTO &amp; CEO με γνώση αναγκών ΥΠΕΘΑ</li>
+<li><strong>Επενδυτής:</strong> Συγκεκριμένο άτομο — ενδιαφέρεται ενεργά</li>
+</ul>
+</div>
+<div class="card" style="border-left:3px solid var(--red)">
+<h3>❌ Τι ΔΕΝ Υπάρχει (Ακόμα)</h3>
+<ul class="spec-list">
+<li><strong>IKE:</strong> Δεν έχει ιδρυθεί ακόμα</li>
+<li><strong>Founders' Agreement:</strong> Δεν υπάρχει — πρέπει να γίνει ΠΡΩΤΑ</li>
+<li><strong>Trademark:</strong> Δεν έχει κατατεθεί (το «Triton Labs» μπορεί να αλλάξει)</li>
+<li><strong>Κώδικας Cortex:</strong> Δεν υπάρχει codebase ακόμα — μόνο AI demo</li>
+<li><strong>Πατέντες:</strong> Καμία κατάθεση</li>
+<li><strong>Grant αιτήσεις:</strong> Καμία — θα υποβληθούν μετά την ίδρυση</li>
+<li><strong>LOI / MOU:</strong> Δεν υπάρχουν επίσημα έγγραφα πελατών</li>
+<li><strong>Advisory Board:</strong> Δεν έχει συγκροτηθεί</li>
+</ul>
+</div>
+</div>
+
+<div class="stat-row">
+<div class="stat-box">
+<div class="num" style="color:var(--green)">TRL 3-4</div>
+<div class="label">Τεχνική Ωριμότητα</div>
+</div>
+<div class="stat-box">
+<div class="num">1</div>
+<div class="label">Assembled COTS Drone</div>
+</div>
+<div class="stat-box">
+<div class="num" style="color:var(--amber)">Μ2</div>
+<div class="label">Live Demo Στόχος</div>
+</div>
+<div class="stat-box">
+<div class="num" style="color:var(--red)">€0</div>
+<div class="label">Κεφάλαιο Σήμερα</div>
+</div>
+</div>
+
+<div class="callout callout-warn">
+<strong style="color:#fff">⚠️ Part-Time Πραγματικότητα:</strong> Οι 3 ιδρυτές εργάζονται σε άλλες δουλειές. Θα δουλεύουν part-time για τους πρώτους 6 μήνες. Αυτό σημαίνει ότι τα timelines πρωτοτύπων μπορεί να ολισθήσουν. Full-time μετάβαση θα γίνει μόλις υπάρξει runway (μετά την εισροή κεφαλαίου) ή/και πρώτα έσοδα. Πρέπει να συμφωνήσουμε σε σαφές σημείο μετάβασης.
+</div>
+</div>
+</section>
+
+<!-- ============ ΤΟ ΟΡΑΜΑ ============ -->
+<section id="vision">
+<div class="wrap">
+<div class="section-header">
+<span class="mono">01 // ΤΟ ΟΡΑΜΑ</span>
+<h2>Τι Χτίζουμε και Γιατί Τώρα</h2>
+<p>Μια ελληνική deep-tech startup που κατασκευάζει αρθρωτά αυτόνομα συστήματα (UAV &amp; USV) με ιδιόκτητο AI — για άμυνα και ναυτιλία.</p>
+</div>
+
+<div class="grid-2">
+<div class="card">
+<h3>🎯 Η Θέση μας</h3>
+<p style="font-size:.9rem">Ευρωπαϊκά, αυτόνομα συστήματα αμυντικού βαθμού χρησιμοποιώντας εμπορικό hardware (COTS) ενισχυμένο με δικό μας AI. Καμία εξάρτηση από DJI, καμία εξάρτηση ITAR, πλήρης ευρωπαϊκή αλυσίδα εφοδιασμού. Dual-use: στρατιωτικοί και εμπορικοί πελάτες.</p>
+</div>
+<div class="card">
+<h3>⏰ Γιατί Τώρα</h3>
+<p style="font-size:.9rem">Η Ευρώπη ξοδεύει €7.3B στο EDF, €336.6M ειδικά για SMEs, €1.4B+ στο EIC. Η Ελλάδα εντάχθηκε στο NATO DIANA. Η γεωπολιτική κρίση επιταχύνει τις αμυντικές προμήθειες. Δεν υπάρχει ευρωπαϊκός «πρωταθλητής» σε drones. Αυτό το παράθυρο δεν θα μείνει ανοιχτό για πάντα.</p>
+</div>
+</div>
+
+<div class="callout callout-info" style="margin-top:24px">
+<strong style="color:#fff">Με απλά λόγια:</strong> Φτιάχνουμε drones (ιπτάμενα + θαλάσσια) για στρατό, ναυτικό, ναυτιλία, ενέργεια. Χρησιμοποιούμε εμπορικά κομμάτια + δικό μας AI. Είμαστε φθηνότεροι, ταχύτεροι και πιο ευέλικτοι από τις μεγάλες αμυντικές εταιρείες, και πολύ πιο κατάλληλοι για άμυνα από consumer drones τύπου DJI.
+</div>
+
+<div class="stat-row">
+<div class="stat-box"><div class="num">$45<span class="unit">B+</span></div><div class="label">Παγκόσμια Αγορά (TAM)</div></div>
+<div class="stat-box"><div class="num">€7.3<span class="unit">B</span></div><div class="label">EDF Χρηματοδότηση ΕΕ</div></div>
+<div class="stat-box"><div class="num">€450<span class="unit">M</span></div><div class="label">Ελληνικός Αμυντικός Π/Υ UAS</div></div>
+<div class="stat-box"><div class="num" style="color:var(--green)">ΤΩΡΑ</div><div class="label">Παράθυρο Ευκαιρίας</div></div>
+</div>
+</div>
+</section>
+
+<!-- ============ ΤΙ ΦΤΙΑΧΝΟΥΜΕ ============ -->
+<section id="products">
+<div class="wrap">
+<div class="section-header">
+<span class="mono">02 // ΤΙ ΦΤΙΑΧΝΟΥΜΕ</span>
+<h2>Χαρτοφυλάκιο Προϊόντων — Ρεαλιστικές Προτεραιότητες</h2>
+<p>6 γραμμές προϊόντων σε 4 κατηγορίες. Εστίαση Έτους 1: Spectre (A1) + Υπηρεσίες Εκπαίδευσης + παράλληλη σχεδίαση Nereid (B1). Τα υπόλοιπα αργότερα.</p>
+</div>
+
+<h3 style="margin-bottom:16px">Εναέρια Συστήματα (UAV)</h3>
+<div class="grid-3">
+<div class="card" style="border-top:3px solid var(--green)">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+<h3 style="border:none;padding:0;margin:0">A1 — SPECTRE</h3>
+<span class="badge badge-green">ΠΡΟΤΕΡΑΙΟΤΗΤΑ 1</span>
+</div>
+<p style="font-size:.85rem">Τακτικό αρθρωτό quadcopter. Αναγνώριση, ISR. €5K-15K.</p>
+<ul class="spec-list">
+<li>20-40 λεπτά αυτονομία (στόχος, ανάλογα payload)</li>
+<li>Visual SLAM πλοήγηση (υπό ανάπτυξη)</li>
+<li>Αλλαγή payload στο πεδίο</li>
+</ul>
+<div class="callout callout-success" style="margin-top:12px;padding:10px 14px;font-size:.8rem">
+<strong>Κατάσταση:</strong> TRL 3-4. COTS frame assembled. CAD σχέδια ✅. 3D μέρη ✅. Live demo στόχος: Μήνας 2. Κύριος κίνδυνος: ολοκλήρωση AI module.
+</div>
+</div>
+
+<div class="card" style="border-top:3px solid var(--amber)">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+<h3 style="border:none;padding:0;margin:0">A2 — ORACLE</h3>
+<span class="badge badge-amber">ΠΡΟΤΕΡΑΙΟΤΗΤΑ 2</span>
+</div>
+<p style="font-size:.85rem">Σταθερή πτέρυγα ISR. Μεγάλη εμβέλεια, 2-4 ώρες. €15K-35K.</p>
+<ul class="spec-list">
+<li>Εκτόξευση χωρίς διάδρομο</li>
+<li>EO/IR + AIS δέκτης</li>
+<li>Κρυπτογραφημένη ζεύξη LOS/BLOS</li>
+</ul>
+<div class="callout callout-warn" style="margin-top:12px;padding:10px 14px;font-size:.8rem">
+<strong>Κατάσταση:</strong> TRL 2. Concept σχεδιασμός. Πρωτότυπο στόχος Q3-Q4 2026. Εξαρτάται από επιτυχία A1 και διαθέσιμο budget.
+</div>
+</div>
+
+<div class="card" style="border-top:3px solid var(--red)">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+<h3 style="border:none;padding:0;margin:0">A3 — AEGIS</h3>
+<span class="badge badge-red">ΠΡΟΤΕΡΑΙΟΤΗΤΑ 3</span>
+</div>
+<p style="font-size:.85rem">Counter-UAS αναχαιτιστής. Κινητικό/δίχτυ. €8K-20K.</p>
+<ul class="spec-list">
+<li>Χρόνος αντίδρασης &lt;30 δεύτερα</li>
+<li>AI παρακολούθηση στόχου</li>
+<li>Ενσωμάτωση με C-UAS radar</li>
+</ul>
+<div class="callout callout-danger" style="margin-top:12px;padding:10px 14px;font-size:.8rem">
+<strong>Κατάσταση:</strong> TRL 1-2. Concept μόνο. Δεν ξεκινάει πριν ολοκληρωθεί A1. Χρειάζεται radar partner. Ρεαλιστικά: Έτος 2+.
+</div>
+</div>
+</div>
+
+<h3 style="margin:30px 0 16px">Θαλάσσια Συστήματα (USV)</h3>
+<div class="grid-2">
+<div class="card" style="border-top:3px solid var(--green)">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+<h3 style="border:none;padding:0;margin:0">B1 — NEREID</h3>
+<span class="badge badge-green">ΠΡΟΤΕΡΑΙΟΤΗΤΑ 1 (ΠΑΡΑΛΛΗΛΑ)</span>
+</div>
+<p style="font-size:.85rem">Μικρό παράκτιο USV (&lt;3μ). Ηλεκτρικό, χαμηλή υπογραφή. €30K-80K.</p>
+<ul class="spec-list">
+<li>8-12 ώρες αυτονομία</li>
+<li>COLREG-aware πλοήγηση</li>
+<li>Αρθρωτός χώρος αισθητήρων</li>
+</ul>
+<div class="callout callout-warn" style="margin-top:12px;padding:10px 14px;font-size:.8rem">
+<strong>Κατάσταση:</strong> TRL 2. Σχεδιασμός ξεκινάει παράλληλα με A1. Πρωτότυπο ρεαλιστικά Q2-Q3 2027. Χρειάζεται εμπειρία composite γαστρών.
+</div>
+</div>
+
+<div class="card" style="border-top:3px solid var(--red)">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+<h3 style="border:none;padding:0;margin:0">B2 — POSEIDON</h3>
+<span class="badge badge-red">ΠΡΟΤΕΡΑΙΟΤΗΤΑ 3</span>
+</div>
+<p style="font-size:.85rem">Μεσαίο υπεράκτιο USV (3-7μ). Υβριδικό diesel-ηλεκτρικό. €80K-250K.</p>
+<ul class="spec-list">
+<li>24+ ώρες συνεχούς λειτουργίας</li>
+<li>Πλήρης COLREG αυτονομία</li>
+<li>Χωρητικότητα 200+ kg payload</li>
+</ul>
+<div class="callout callout-danger" style="margin-top:12px;padding:10px 14px;font-size:.8rem">
+<strong>Κατάσταση:</strong> TRL 1. Concept μόνο. Μεγάλο capex, χρειάζεται ναυπηγική τεχνογνωσία. Ρεαλιστικά: Έτος 3+ ή μέσω εξωτερικού συνεργάτη.
+</div>
+</div>
+</div>
+
+<h3 style="margin:30px 0 16px">Λογισμικό &amp; Υπηρεσίες</h3>
+<div class="grid-2">
+<div class="card" style="border-top:3px solid var(--green)">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+<h3 style="border:none;padding:0;margin:0">C1 — CORTEX AI</h3>
+<span class="badge badge-green">ΠΡΟΤΕΡΑΙΟΤΗΤΑ 1</span>
+</div>
+<p style="font-size:.85rem">AI πλατφόρμα διαχείρισης αποστολών. Object detection, SLAM, σμήνος.</p>
+<div class="callout callout-info" style="margin-top:12px;padding:10px 14px;font-size:.8rem">
+<strong>Κατάσταση:</strong> Working AI demo (object detection) υπάρχει ✅. Δεν υπάρχει codebase Cortex ακόμα. Πρώτα modules μετά πρόσληψη E1 (Μηχανικός AI). Αυτό είναι το πραγματικό IP μας μακροπρόθεσμα.
+</div>
+</div>
+
+<div class="card" style="border-top:3px solid var(--green)">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+<h3 style="border:none;padding:0;margin:0">D1/D2 — ΥΠΗΡΕΣΙΕΣ</h3>
+<span class="badge badge-green">ΕΣΟΔΑ ΑΠΟ ΗΜΕΡΑ 1</span>
+</div>
+<p style="font-size:.85rem">Field Labs + Εκπαίδευση &amp; Πιστοποίηση. Τα πρώτα πραγματικά έσοδα.</p>
+<div class="callout callout-success" style="margin-top:12px;padding:10px 14px;font-size:.8rem">
+<strong>Στρατηγικό:</strong> Οι υπηρεσίες εκπαίδευσης μπορούν να ξεκινήσουν ΑΜΕΣΑ — χωρίς να περιμένουμε πρωτότυπα. Workshops κατασκευής drones, EASA πιστοποίηση, εκπαίδευση σε στρατιωτικές μονάδες. Margin 65-75%. Ρεαλιστικά Ε1: €10-20K.
+</div>
+</div>
+</div>
+
+<div class="callout callout-warn" style="margin-top:24px">
+<strong style="color:#fff">⚡ Σειρά Προτεραιότητας (Διορθωμένη):</strong>
+<ol style="margin-top:8px;padding-left:20px;color:var(--muted);font-size:.9rem">
+<li><strong style="color:var(--green)">Πρώτοι 6 μήνες:</strong> Spectre (A1) λειτουργικό πρωτότυπο + πρώτες εκπαιδεύσεις + σχεδιασμός B1 + αιτήσεις grants</li>
+<li><strong style="color:var(--amber)">Μήνες 6-12:</strong> Oracle (A2) σχεδιασμός + Cortex alpha + πρώτες demo σε πελάτες + αποτελέσματα grants</li>
+<li><strong style="color:var(--amber)">Έτος 2:</strong> A2 πρωτότυπο + B1 πρωτότυπο + πρώτες πωλήσεις A1 + Aegis σχεδιασμός</li>
+<li><strong style="color:var(--red)">Έτος 3:</strong> Κλιμάκωση πωλήσεων + B2 σχεδιασμός + Series A</li>
+</ol>
+</div>
+</div>
+</section>
+
+<!-- ============ Η ΑΓΟΡΑ ============ -->
+<section id="market">
+<div class="wrap">
+<div class="section-header">
+<span class="mono">03 // Η ΑΓΟΡΑ — ΜΕ ΕΙΛΙΚΡΙΝΕΙΑ</span>
+<h2>Πού Μπαίνουμε και Πού Δεν Μπαίνουμε</h2>
+<p>Η αγορά είναι τεράστια αλλά πρέπει να είμαστε ειλικρινείς: ελληνική αγορά πρώτα, ευρωπαϊκά προγράμματα παράλληλα.</p>
+</div>
+
+<div class="grid-2">
+<div class="card" style="border-left:3px solid var(--green)">
+<h3>✅ Πού Μπαίνουμε (Πρώτοι 18 μήνες)</h3>
+<ul class="spec-list">
+<li><strong>Ελληνικές ΕΔ:</strong> Πιλοτικό — μικρά τακτικά drones. Γνωρίζουμε τις ανάγκες ΥΠΕΘΑ.</li>
+<li><strong>Ελληνικό Λιμενικό/ΠΝ:</strong> Επιτήρηση ΑΟΖ, ασφάλεια λιμένων</li>
+<li><strong>Εκπαίδευση:</strong> Workshops drone κατασκευής — άμεσα έσοδα</li>
+<li><strong>Ελληνικές ναυτιλιακές:</strong> Επιθεώρηση γαστρών (αφού έχουμε B1)</li>
+<li><strong>EU Grants:</strong> EDF cascading, EUDIS, EIC, NATO DIANA</li>
+</ul>
+</div>
+<div class="card" style="border-left:3px solid var(--red)">
+<h3>❌ Πού ΔΕΝ Μπαίνουμε (Ακόμα)</h3>
+<ul class="spec-list">
+<li><strong>Consumer drones:</strong> Δεν ανταγωνιζόμαστε DJI</li>
+<li><strong>ΗΠΑ αμυντική αγορά:</strong> ITAR — αργότερα</li>
+<li><strong>Μεγάλα MALE/HALE UAV:</strong> Airbus/GA-ASI territory</li>
+<li><strong>Αυτόνομα πλοία:</strong> Πολύ μεγάλο capex</li>
+<li><strong>Κίνα/Ρωσία:</strong> EDTIB compliance</li>
+</ul>
+</div>
+</div>
+
+<div style="margin-top:30px">
+<h3 style="margin-bottom:16px">Ανταγωνιστές — Ειλικρινής Σύγκριση</h3>
+<table>
+<thead><tr><th>Εταιρεία</th><th>Πλεονέκτημά τους</th><th>Δικό μας Πλεονέκτημα</th></tr></thead>
+<tbody>
+<tr><td>Parrot (Γαλλία)</td><td>Εδραιωμένο brand, NATO contracts</td><td>Ευρύτερο χαρτοφυλάκιο (USV), χαμηλότερο κόστος</td></tr>
+<tr><td>Tekever (Πορτογαλία)</td><td>€90M+ funding, 7 χώρες, battle-tested</td><td>COTS = φθηνότερο. Στοχεύουμε πελάτες που δεν μπορούν €150K+</td></tr>
+<tr><td>Quantum Systems (DE)</td><td>Proven VTOL, Γερμανική αγορά</td><td>UAV+USV ολοκλήρωση, ελληνική αγορά</td></tr>
+<tr><td>Ελληνικές startups</td><td>Τοπική γνώση, υπάρχουσες σχέσεις</td><td>Βρυξέλλες CEO = EU grants, ολοκληρωμένη λύση</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="callout callout-warn" style="margin-top:20px">
+<strong style="color:#fff">Ειλικρινής αποτίμηση:</strong> Δεν θα νικήσουμε τη Tekever σε ωριμότητα ή τη Parrot σε brand recognition. Η θέση μας είναι: <strong>ο μόνος ΕΕ παίκτης που κάνει UAV + USV + AI + μεταφορά ικανότητας</strong>, με COTS κόστος, στοχεύοντας πελάτες που δεν μπορούν ή δεν θέλουν τα ακριβά legacy συστήματα. Στην Ελλάδα, γνωρίζουμε τις ανάγκες του ΥΠΕΘΑ από πρώτο χέρι.
+</div>
+</div>
+</section>
+
+<!-- ============ ΛΕΙΤΟΥΡΓΙΕΣ ============ -->
+<section id="operations">
+<div class="wrap">
+<div class="section-header">
+<span class="mono">04 // ΛΕΙΤΟΥΡΓΙΕΣ & ΔΟΜΗ</span>
+<h2>Πώς Δουλεύουμε — Πρακτικά</h2>
+<p>Τοποθεσίες, εργαλεία, τρόπος δουλειάς, αποφάσεις.</p>
+</div>
+
+<div class="grid-2">
+<div class="card">
+<h3>📍 Τοποθεσίες</h3>
+<ul class="spec-list">
+<li><strong>Αθήνα (κύρια βάση):</strong> Εργαστήριο R&D + κατασκευή πρωτοτύπων. 80-120m².</li>
+<li><strong>Βρυξέλλες (BD hub):</strong> CEO εδρεύει μόνιμα. EDA, EDF, NATO HQ πρόσβαση.</li>
+<li><strong>Remote-first:</strong> Async tools (Slack/Discord, Git, Notion). Part-time αρχικά.</li>
+</ul>
+</div>
+<div class="card">
+<h3>🛠️ Εργαλεία &amp; Υποδομή</h3>
+<ul class="spec-list">
+<li><strong>Hardware Lab:</strong> 3D printers (FDM+SLA), CNC, soldering, RF equipment</li>
+<li><strong>Software:</strong> Git, VS Code, ROS2, PX4/ArduPilot, SITL simulators</li>
+<li><strong>Project Mgmt:</strong> Notion/Linear + weekly standups</li>
+<li><strong>Testing:</strong> Πτητικά πεδία + θαλάσσιες δοκιμές (Σαρωνικός)</li>
+</ul>
+</div>
+</div>
+
+<div class="card" style="margin-top:24px">
+<h3>⚖️ Λήψη Αποφάσεων</h3>
+<div class="grid-2" style="margin-top:16px">
+<div>
+<h4>Στρατηγικές (Consensus 3/4)</h4>
+<ul class="spec-list">
+<li>Νέα γραμμή προϊόντων</li>
+<li>Μεγάλα συμβόλαια (&gt;€50K)</li>
+<li>Πρόσληψη/απόλυση</li>
+<li>Fundraising</li>
+<li>IP licensing / partnerships</li>
+</ul>
+</div>
+<div>
+<h4>Λειτουργικές (Domain Owner)</h4>
+<ul class="spec-list">
+<li>Τεχνικές αποφάσεις → CTO</li>
+<li>Αγορά υλικών &lt;€5K → COO</li>
+<li>Marketing/PR → CEO</li>
+<li>R&D priorities → CTO</li>
+<li>Grant management → CEO + COO</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="callout callout-danger" style="margin-top:24px">
+<strong style="color:#fff">⚠️ ΚΡΙΣΙΜΟ — Πρέπει να Λυθεί ΤΩΡΑ:</strong>
+<ul style="margin-top:8px;padding-left:20px;color:var(--muted);font-size:.88rem">
+<li><strong>Part-time → Full-time:</strong> Πότε ακριβώς γίνεται mandatory; Πρόταση: μόλις εισρεύσει κεφάλαιο €200K.</li>
+<li><strong>CEO Βρυξέλλες vs ομάδα Αθήνα:</strong> Weekly video call + μηνιαίο physical meetup.</li>
+<li><strong>Αν κάποιος δεν μπορεί full-time στο Μήνα 6:</strong> Τι γίνεται; Bad leaver? Μείωση equity;</li>
+<li><strong>Deadlock resolution:</strong> Αν 2 ιδρυτές vs 1 ιδρυτής + CEO; Casting vote ο CTO;</li>
+<li><strong>Πότε μισθοί ιδρυτών:</strong> Πρόταση: μόλις υπάρξουν €10K+/μήνα έσοδα, ξεκινούν €1K/μήνα/ιδρυτή.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- ============ ΟΜΑΔΑ ============ -->
+<section id="team">
+<div class="wrap">
+<div class="section-header">
+<span class="mono">05 // ΟΜΑΔΑ & ΡΟΛΟΙ</span>
+<h2>Ποιος Κάνει Τι — Σαφήνεια</h2>
+<p>3 ιδρυτές (part-time→full-time, χωρίς μισθό), 1 CEO (μισθός €24K/yr + 10%), 2 μισθωτοί μηχανικοί.</p>
+</div>
+
+<div class="grid-2">
+<div class="card team-card" style="border-top:3px solid var(--accent)">
+<div class="team-avatar">CEO</div>
+<h3 style="border:none;padding:0;font-size:1rem">Διευθύνων Σύμβουλος</h3>
+<div class="role">Βρυξέλλες — Επιχειρηματική Ανάπτυξη</div>
+<ul class="spec-list" style="text-align:left;font-size:.82rem">
+<li>Fundraising &amp; σχέσεις επενδυτών</li>
+<li>Αιτήσεις χρηματοδότησης ΕΕ (EDF, EIC, EUDIS)</li>
+<li>Πωλήσεις &amp; BD σε αμυντικό/ναυτιλιακό κλάδο</li>
+<li>Θεσμικές σχέσεις (EDA, NATO, ΓΕΕΘΑ)</li>
+</ul>
+<div class="badge-row"><span class="badge badge-blue">€24K/yr μισθός + 10% μετοχικό</span></div>
+</div>
+
+<div class="card team-card" style="border-top:3px solid var(--green)">
+<div class="team-avatar">CTO</div>
+<h3 style="border:none;padding:0;font-size:1rem">Τεχνικός Διευθυντής (Ιδρυτής)</h3>
+<div class="role">Αθήνα — Αρχιτεκτονική Συστημάτων</div>
+<ul class="spec-list" style="text-align:left;font-size:.82rem">
+<li>Τεχνική στρατηγική &amp; αρχιτεκτονική</li>
+<li>Σχεδιασμός πλατφορμών UAV/USV</li>
+<li>Εποπτεία Cortex AI &amp; R&D roadmap</li>
+<li>Στρατιωτικό background — γνώση αναγκών ΥΠΕΘΑ</li>
+</ul>
+<div class="badge-row"><span class="badge badge-green">Part-time 6μ → Full-time | 20% μετοχικό</span></div>
+</div>
+</div>
+
+<div class="grid-3" style="margin-top:24px">
+<div class="card team-card" style="border-top:3px solid var(--green)">
+<div class="team-avatar">COO</div>
+<h3 style="border:none;padding:0;font-size:1rem">COO &amp; Μηχανικός (Ιδρυτής)</h3>
+<div class="role">Αθήνα — Λειτουργίες &amp; Μηχανική</div>
+<ul class="spec-list" style="text-align:left;font-size:.82rem">
+<li>Λειτουργίες, κατασκευή &amp; δοκιμές</li>
+<li>Εφοδιαστική αλυσίδα &amp; προμήθειες</li>
+<li>Κανονιστική συμμόρφωση (EASA, ΥΠΑ)</li>
+<li>Διαχείριση EU grants (reporting)</li>
+</ul>
+<div class="badge-row"><span class="badge badge-green">Part-time 6μ → Full-time | 15% μετοχικό</span></div>
+</div>
+
+<div class="card team-card" style="border-top:3px solid var(--green)">
+<div class="team-avatar">EXP</div>
+<h3 style="border:none;padding:0;font-size:1rem">Senior Μηχανικός (Ιδρυτής)</h3>
+<div class="role">Αθήνα — Hardware &amp; Ολοκλήρωση</div>
+<ul class="spec-list" style="text-align:left;font-size:.82rem">
+<li>CAD/CAM σχεδιασμός κελυφών UAV</li>
+<li>Σχεδιασμός γαστρών USV</li>
+<li>3D printing &amp; rapid prototyping</li>
+<li>Hands-on κατασκευή &amp; testing</li>
+</ul>
+<div class="badge-row"><span class="badge badge-green">Part-time 6μ → Full-time | 15% μετοχικό</span></div>
+</div>
+
+<div class="card card-flex" style="border-top:3px solid var(--amber);padding:20px">
+<h3 style="border:none;padding:0;margin-bottom:12px">Μισθωτοί Μηχανικοί (×2)</h3>
+<div style="margin-bottom:16px">
+<h4 style="font-size:.82rem">E1 — Μηχανικός Λογισμικού / AI</h4>
+<p style="font-size:.82rem">Ανάπτυξη Cortex AI, μηχανική όραση, αυτόνομη πλοήγηση.</p>
+</div>
+<div>
+<h4 style="font-size:.82rem">E2 — Μηχανικός 3D Σχεδίασης &amp; Πιλότος UAS</h4>
+<p style="font-size:.82rem">CAD σχεδίαση, 3D εκτύπωση, πρωτοτυποποίηση. Πιστοποιημένος χειριστής UAS.</p>
+</div>
+<div class="push-bottom"><span class="badge badge-amber">~€1.300/μήνα καθαρά + ~€900/μήνα εργοδοτικές (ο καθένας)</span></div>
+</div>
+</div>
+
+<div class="callout callout-info" style="margin-top:20px">
+<strong style="color:#fff">📋 TODO — Ομάδα:</strong> Χρειαζόμαστε Advisory Board μετά την ίδρυση. Στόχος: 1 απόστρατος αξιωματικός, 1 καθηγητής ρομποτικής/αεροναυπηγικής, 1 εμπειρογνώμονας ναυτιλίας. Δεν κοστίζει — δίνουμε 0.5-1% equity ο καθένας ή symbolic advisory fee.
+</div>
+</div>
+</section>
+
+<!-- ============ EQUITY ============ -->
+<section id="equity">
+<div class="wrap">
+<div class="section-header">
+<span class="mono">06 // ΜΕΤΟΧΙΚΟ, VESTING & ΔΟΜΗ</span>
+<h2>Πώς Μοιράζεται η Πίτα</h2>
+<p>Επενδυτής 30-40% (€200K), ιδρυτές 50% (δουλειά χωρίς μισθό), CEO 10% (μισθός + BD).</p>
+</div>
+
+<div class="grid-2">
+<div class="card" style="border-top:3px solid var(--accent)">
+<h3>📊 Κατανομή Μετοχικού</h3>
+<table>
+<thead><tr><th>Μέτοχος</th><th>Μετοχικό</th><th>Όροι</th></tr></thead>
+<tbody>
+<tr><td><strong>Επενδυτής</strong></td><td style="color:var(--accent);font-weight:700;font-size:1.1rem">30–40%</td><td>€200K + θέση ΔΣ + veto</td></tr>
+<tr><td><strong>CTO</strong> (Ιδρυτής)</td><td style="color:var(--green);font-weight:700">20%</td><td>Χωρίς μισθό 6μ, 4yr vest, 1yr cliff</td></tr>
+<tr><td><strong>COO</strong> (Ιδρυτής)</td><td style="color:var(--green);font-weight:700">15%</td><td>Χωρίς μισθό 6μ, 4yr vest, 1yr cliff</td></tr>
+<tr><td><strong>Expert</strong> (Ιδρυτής)</td><td style="color:var(--green);font-weight:700">15%</td><td>Χωρίς μισθό 6μ, 4yr vest, 1yr cliff</td></tr>
+<tr><td><strong>CEO</strong></td><td style="color:var(--amber);font-weight:700">10%</td><td>€24K/yr μισθός, 4yr vest, 1yr cliff</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="card" style="border-top:3px solid var(--green)">
+<h3>⏳ Δομή Vesting</h3>
+<ul class="spec-list">
+<li><strong>4-year vesting, 1-year cliff:</strong> 0% τον πρώτο χρόνο. Μετά: 25% κατοχύρωση + μηνιαία για 3 χρόνια.</li>
+<li><strong>Good leaver:</strong> Φεύγεις μετά cliff → κρατάς vested shares.</li>
+<li><strong>Bad leaver:</strong> Απολύεσαι for cause → buyback στο nominal.</li>
+<li><strong>Single trigger acceleration:</strong> Πλήρες vest αν πωληθεί η εταιρεία.</li>
+</ul>
+</div>
+</div>
+
+<div class="grid-2" style="margin-top:24px">
+<div class="card">
+<h3>🏢 Νομική Μορφή</h3>
+<ul class="spec-list">
+<li><strong>IKE:</strong> Ελληνικό LLC. Κεφάλαιο σύστασης €1.</li>
+<li><strong>IP assignment:</strong> Όλοι υπογράφουν — κάθε IP ανήκει στην εταιρεία.</li>
+<li><strong>Founders' Agreement:</strong> Δικηγόρος startup ~€3-5K. ΜΗ ΔΙΑΠΡΑΓΜΑΤΕΥΣΙΜΟ.</li>
+<li><strong>Trademark:</strong> Θα αποφασιστεί πριν την ίδρυση.</li>
+</ul>
+</div>
+<div class="card">
+<h3>💡 Dilution — Τι θα Γίνει</h3>
+<ul class="spec-list">
+<li><strong>Seed (τώρα):</strong> €200K → Επενδυτής 30-40%</li>
+<li><strong>Series A (Ε2-3):</strong> €2-5M → Αναμένεται 20-25% dilution</li>
+<li><strong>Σημαντικό:</strong> Η αποτίμηση ανεβαίνει → λιγότερα % = περισσότερα €</li>
+<li><strong>Anti-dilution:</strong> Weighted-average protection για αρχικό επενδυτή</li>
+</ul>
+</div>
+</div>
+
+<div class="callout callout-danger" style="margin-top:24px">
+<strong style="color:#fff">🚨 Πρέπει να Απαντηθούν ΠΡΙΝ Υπογράψουμε:</strong>
+<ul style="margin-top:8px;padding-left:20px;color:var(--muted);font-size:.88rem">
+<li>Συμφωνούμε 100% στα % μετοχικού;</li>
+<li>Πότε γίνεται mandatory full-time; (Πρόταση: Μήνας 1 μετά εισροή κεφαλαίου)</li>
+<li>Τι γίνεται αν ιδρυτής δεν γίνει full-time; → Bad leaver ή μείωση σε advisor role;</li>
+<li>Deadlock resolution mechanism;</li>
+<li>Πότε ξεκινούν μισθοί ιδρυτών; (Πρόταση: μετά €10K+/μήνα recurring revenue)</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- ============ ΟΙΚΟΝΟΜΙΚΑ ============ -->
+<section id="financials">
+<div class="wrap">
+<div class="section-header">
+<span class="mono">07 // ΟΙΚΟΝΟΜΙΚΑ — ΡΕΑΛΙΣΤΙΚΑ</span>
+<h2>Τα Νούμερα — Χωρίς Ωραιοποίηση</h2>
+<p>Το Έτος 1 είναι ζημιογόνο. Αυτό είναι φυσιολογικό για deep-tech startup. Τα λεφτά χτίζουν πρωτότυπα, όχι κέρδη.</p>
+</div>
+
+<div class="callout callout-danger" style="margin-bottom:30px">
+<strong style="color:#fff">⚠️ Βασική Αλλαγή από v1:</strong> Τα EU grants Ε1 μειώθηκαν δραστικά (€200K→€30K). Λόγος: οι κύκλοι αξιολόγησης EDF/EIC διαρκούν 12-18 μήνες. Αν υποβάλουμε Q1 2026, τα χρήματα φτάνουν πιθανότερα Q2-Q4 2027 (Έτος 2). Τα πρώτα €30K μπορεί να έρθουν από NATO DIANA accelerator ή Elevate Greece.
+</div>
+
+<h3 style="margin-bottom:16px">Τριετής P&amp;L — Ρεαλιστικό Σενάριο (€)</h3>
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th></th><th>Έτος 1</th><th>Έτος 2</th><th>Έτος 3</th></tr></thead>
+<tbody>
+<tr><td><strong>ΕΣΟΔΑ</strong></td><td></td><td></td><td></td></tr>
+<tr><td style="padding-left:28px">Επιχορηγήσεις ΕΕ</td><td>€30.000</td><td>€250.000</td><td>€500.000</td></tr>
+<tr><td style="padding-left:28px">Πωλήσεις UAV</td><td>€15.000</td><td>€120.000</td><td>€350.000</td></tr>
+<tr><td style="padding-left:28px">Πωλήσεις USV</td><td>—</td><td>—</td><td>€80.000</td></tr>
+<tr><td style="padding-left:28px">Λογισμικό (Cortex)</td><td>—</td><td>€20.000</td><td>€80.000</td></tr>
+<tr><td style="padding-left:28px">Εκπαίδευση &amp; Υπηρεσίες</td><td>€15.000</td><td>€80.000</td><td>€200.000</td></tr>
+<tr style="background:rgba(59,130,246,.08)"><td><strong style="color:#fff">Σύνολο Εσόδων</strong></td><td><strong style="color:#fff">€60.000</strong></td><td><strong style="color:#fff">€470.000</strong></td><td><strong style="color:#fff">€1.210.000</strong></td></tr>
+<tr><td colspan="4" style="height:8px;border:none"></td></tr>
+<tr><td><strong>ΕΞΟΔΑ</strong></td><td></td><td></td><td></td></tr>
+<tr><td style="padding-left:28px">Μισθοδοσία (CEO €24K + 2 μηχ. €52.8K)</td><td>€76.800</td><td>€160.000</td><td>€300.000</td></tr>
+<tr><td style="padding-left:28px">R&D / Υλικά / Πρωτότυπα</td><td>€55.000</td><td>€100.000</td><td>€180.000</td></tr>
+<tr><td style="padding-left:28px">Λειτουργικά (ενοίκιο, utilities, ασφάλεια)</td><td>€22.000</td><td>€35.000</td><td>€50.000</td></tr>
+<tr><td style="padding-left:28px">Συνέδρια &amp; Marketing</td><td>€15.000</td><td>€30.000</td><td>€50.000</td></tr>
+<tr><td style="padding-left:28px">Ταξίδια (CEO Βρυξέλλες↔Αθήνα)</td><td>€10.000</td><td>€20.000</td><td>€30.000</td></tr>
+<tr><td style="padding-left:28px">Νομικά / IP / Κανονιστικά / EASA</td><td>€20.000</td><td>€30.000</td><td>€50.000</td></tr>
+<tr style="background:rgba(239,68,68,.08)"><td><strong>Σύνολο Εξόδων</strong></td><td><strong>€198.800</strong></td><td><strong>€375.000</strong></td><td><strong>€660.000</strong></td></tr>
+<tr><td colspan="4" style="height:8px;border:none"></td></tr>
+<tr style="background:rgba(239,68,68,.08)"><td><strong style="color:#fff">Καθαρό Αποτέλεσμα</strong></td><td style="color:var(--red)"><strong>-€138.800</strong></td><td style="color:var(--green)"><strong>+€95.000</strong></td><td style="color:var(--green)"><strong>+€550.000</strong></td></tr>
+<tr><td><strong>Σωρευτικά (από επένδυση)</strong></td><td style="color:var(--red)">€61.200 cash</td><td style="color:var(--green)"><strong>€156.200</strong></td><td style="color:var(--green)"><strong>€706.200</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="callout callout-info" style="margin-top:20px">
+<strong style="color:#fff">Σημείωση μισθοδοσίας Ε1:</strong> CEO €24K/yr (€2K/μήνα — ουσιαστικά ιδρυτικό επίπεδο) + 2 μηχανικοί €52.8K/yr (ανά μηχανικό: €1.300 καθαρά + ~€900 εργοδοτικές = €2.200/μήνα ολικό κόστος). Οι 3 ιδρυτές εργάζονται χωρίς μισθό. Ε2: μισθοί ιδρυτών ξεκινούν σταδιακά (€1-1.5K/μήνα ο καθένας + νέες προσλήψεις).
+</div>
+
+<h3 style="margin:30px 0 16px">Ανάλυση Cash Runway</h3>
+<div class="bar-chart">
+<div class="bar-row"><div class="bar-label">Κεφάλαιο Επενδυτή</div><div class="bar-track"><div class="bar-fill blue" style="width:100%">€200.000</div></div></div>
+<div class="bar-row"><div class="bar-label">Αρχικά Κόστη (Μ0-1)</div><div class="bar-track"><div class="bar-fill red" style="width:15%">-€18K (IKE, δικηγόρος, deposit)</div></div></div>
+<div class="bar-row"><div class="bar-label">Διαθέσιμο Κεφάλαιο</div><div class="bar-track"><div class="bar-fill blue" style="width:91%">€182.000</div></div></div>
+<div class="bar-row"><div class="bar-label">Μηνιαίο Burn</div><div class="bar-track"><div class="bar-fill amber" style="width:35%">~€16.5K/μήνα</div></div></div>
+<div class="bar-row"><div class="bar-label">Runway χωρίς έσοδα</div><div class="bar-track"><div class="bar-fill green" style="width:73%">~11 μήνες</div></div></div>
+<div class="bar-row"><div class="bar-label">Runway με μικρά έσοδα</div><div class="bar-track"><div class="bar-fill green" style="width:93%">~14 μήνες</div></div></div>
+</div>
+
+<h3 style="margin:30px 0 16px">Ανάλυση Εξόδων Ε1 — €198.8K</h3>
+<div class="bar-chart">
+<div class="bar-row"><div class="bar-label">Μισθοδοσία</div><div class="bar-track"><div class="bar-fill blue" style="width:78%">€76.8K (39%)</div></div></div>
+<div class="bar-row"><div class="bar-label">R&amp;D / Υλικά</div><div class="bar-track"><div class="bar-fill green" style="width:56%">€55K (28%)</div></div></div>
+<div class="bar-row"><div class="bar-label">Νομικά/EASA</div><div class="bar-track"><div class="bar-fill amber" style="width:20%">€20K (10%)</div></div></div>
+<div class="bar-row"><div class="bar-label">Λειτουργικά</div><div class="bar-track"><div class="bar-fill amber" style="width:22%">€22K (11%)</div></div></div>
+<div class="bar-row"><div class="bar-label">Conferences</div><div class="bar-track"><div class="bar-fill amber" style="width:15%">€15K (8%)</div></div></div>
+<div class="bar-row"><div class="bar-label">Ταξίδια</div><div class="bar-track"><div class="bar-fill amber" style="width:10%">€10K (5%)</div></div></div>
+</div>
+
+<div class="callout callout-warn" style="margin-top:20px">
+<strong style="color:#fff">🚨 Worst Case Scenario:</strong> Αν δεν πάρουμε κανένα grant και κανένα πελάτη στο Ε1, τα €200K τελειώνουν στο Μήνα 11. Σε αυτό το σενάριο χρειαζόμαστε bridge round €50-80K στο Μήνα 9 ή pivot σε pure consulting/training. Οι ιδρυτές πρέπει να είναι ψυχικά προετοιμασμένοι να βάλουν €5-10K ο καθένας ως emergency bridge.
+</div>
+</div>
+</section>
+
+<!-- ============ ΡΙΣΚΑ ============ -->
+<section id="risks">
+<div class="wrap">
+<div class="section-header">
+<span class="mono">08 // ΡΙΣΚΑ & ΠΡΟΚΛΗΣΕΙΣ — ΧΩΡΙΣ ΦΙΛΤΡΟ</span>
+<h2>Τι Μπορεί να Πάει Στραβά</h2>
+<p>Ειλικρινής αξιολόγηση με πιθανότητα, αντίκτυπο και συγκεκριμένες ενέργειες.</p>
+</div>
+
+<div class="grid-2">
+<div class="card" style="border-left:3px solid var(--red)">
+<h3>🔴 Υψηλού Κινδύνου</h3>
+<table>
+<thead><tr><th>Ρίσκο</th><th>Πιθανότητα</th><th>Μετρίαση</th></tr></thead>
+<tbody>
+<tr><td><strong>Cash τελειώνει</strong> πριν πρώτα σοβαρά έσοδα</td><td style="color:var(--red)">60-70%</td><td>11 μήνες runway. 10+ grant αιτήσεις. Bridge round plan. Ιδρυτές backup €5-10K ο καθένας.</td></tr>
+<tr><td><strong>Grant αποτυχία</strong> — success rate 5-15%</td><td style="color:var(--red)">Υψηλή</td><td>Πολλαπλές αιτήσεις ταυτόχρονα. Εναλλακτικά: angel investors, revenue pivot.</td></tr>
+<tr><td><strong>Part-time ιδρυτής</strong> δεν γίνεται full-time</td><td style="color:var(--amber)">Μεσαία</td><td>Cliff clause: χάνει τα πάντα πριν 1 χρόνο. Founders' Agreement — μη-διαπραγματεύσιμο.</td></tr>
+<tr><td><strong>Αμυντικοί κύκλοι πώλησης</strong> — 18+ μήνες στην Ελλάδα</td><td style="color:var(--red)">Υψηλή</td><td>Training revenue Day 1. Δεν βασιζόμαστε σε B2G πωλήσεις μέχρι Ε2.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="card" style="border-left:3px solid var(--amber)">
+<h3>🟡 Μεσαίου Κινδύνου</h3>
+<table>
+<thead><tr><th>Ρίσκο</th><th>Πιθανότητα</th><th>Μετρίαση</th></tr></thead>
+<tbody>
+<tr><td><strong>Κανονιστικά</strong> — EASA Certified Category κοστίζει €50-200K</td><td style="color:var(--amber)">Μεσαία</td><td>Ξεκινάμε με Open Category (A1/A3). Certified Category στο Ε2-3 μόνο αν υπάρχει revenue.</td></tr>
+<tr><td><strong>Ανταγωνισμός</strong> αναδύεται</td><td style="color:var(--amber)">Μεσαία</td><td>Ολοκληρωμένη λύση (UAV+USV+AI). Ταχύτητα. Ελληνική αγορά γνώση.</td></tr>
+<tr><td><strong>Τεχνικό αδιέξοδο</strong></td><td style="color:var(--amber)">Χαμηλή-Μεσαία</td><td>COTS-first = χαμηλό τεχνικό ρίσκο. Fallback σε proven αρχιτεκτονικές.</td></tr>
+<tr><td><strong>Supply chain</strong></td><td style="color:var(--amber)">Χαμηλή-Μεσαία</td><td>Multi-vendor COTS. Ευρωπαίοι προμηθευτές. Buffer stock.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="callout callout-danger" style="margin-top:24px">
+<strong style="color:#fff">🎯 Ο #1 Κίνδυνος — Founder Conflict:</strong> 3 ιδρυτές part-time + εξωτερικός CEO = πολυπλοκότητα. Γι' αυτό χρειαζόμαστε Founders' Agreement ΠΡΙΝ μπει ο πρώτος ευρώ. Ξεκάθαροι ρόλοι, commitment, vesting, exit clauses. Αν κάποιος δεν μπορεί να δεσμευτεί full-time εντός 6 μηνών, πρέπει να το πει ΤΩΡΑ.
+</div>
+
+<div class="card" style="margin-top:24px;border-top:3px solid var(--accent)">
+<h3>📋 Κανονιστικό Roadmap (Κόστος &amp; Χρόνος)</h3>
+<table>
+<thead><tr><th>Πιστοποίηση</th><th>Κόστος</th><th>Χρόνος</th><th>Πότε</th></tr></thead>
+<tbody>
+<tr><td>EASA Open A1/A3 (demo/training)</td><td>~€100/άτομο</td><td>1-2 μήνες</td><td>Μήνας 1-2</td></tr>
+<tr><td>ΥΠΑ Operator Certificate</td><td>€1-3K</td><td>3-6 μήνες</td><td>Μήνας 3-6</td></tr>
+<tr><td>EASA A2 + STS-01/02</td><td>€200-400/άτομο</td><td>2-4 μήνες</td><td>Μήνας 3-6</td></tr>
+<tr><td>EASA Specific LUC</td><td>€5-15K</td><td>6-12 μήνες</td><td>Έτος 2</td></tr>
+<tr><td>Στρατιωτική Εξαίρεση MOU</td><td>€0 (νομικά)</td><td>6-12 μήνες</td><td>Έτος 1-2</td></tr>
+<tr><td>EASA Certified Category</td><td>€50-150K</td><td>18-36 μήνες</td><td>Έτος 3+</td></tr>
+</tbody>
+</table>
+<p style="font-size:.82rem;margin-top:8px;color:var(--amber)">* Κόστος κανονιστικής συμμόρφωσης Ε1-3: €60-170K συνολικά. Ενσωματωμένο στο budget Νομικά/IP.</p>
+</div>
+</div>
+</section>
+
+<!-- ============ ΧΡΟΝΟΔΙΑΓΡΑΜΜΑ ============ -->
+<section id="roadmap">
+<div class="wrap">
+<div class="section-header">
+<span class="mono">09 // ΧΡΟΝΟΔΙΑΓΡΑΜΜΑ</span>
+<h2>Ορόσημα — Ρεαλιστικά</h2>
+<p>Τα κρίσιμα ορόσημα (σε μπλε) δεν μπορούν να καθυστερήσουν. Τα timelines λαμβάνουν υπόψη ότι οι ιδρυτές είναι part-time τους πρώτους μήνες.</p>
+</div>
+
+<div class="grid-2">
+<div>
+<h3 style="margin-bottom:16px">Πρώτοι 6 Μήνες (Q1-Q2 2026)</h3>
+<div class="timeline">
+<div class="tl-item critical"><div class="tl-date">Μήνας 1</div><div class="tl-title">Ίδρυση &amp; Θεμέλια</div><div class="tl-desc">IKE σύσταση, τράπεζα, Founders' Agreement, εύρεση εργαστηρίου, IP assignment</div></div>
+<div class="tl-item critical"><div class="tl-date">Μήνας 1-2</div><div class="tl-title">Κεφάλαιο €200K</div><div class="tl-desc">Εισροή κεφαλαίου επενδυτή. Χωρίς αυτό τίποτα δεν ξεκινάει.</div></div>
+<div class="tl-item done"><div class="tl-date">Μήνας 2</div><div class="tl-title">Spectre (A1) Live Demo</div><div class="tl-desc">Πτητική επίδειξη assembled COTS drone. Πρώτα flight data.</div></div>
+<div class="tl-item"><div class="tl-date">Μήνας 2-3</div><div class="tl-title">EDF Info Days + Αιτήσεις</div><div class="tl-desc">CEO στις Βρυξέλλες. EUDIS + MaJoR cascade. Elevate Greece.</div></div>
+<div class="tl-item"><div class="tl-date">Μήνας 3-5</div><div class="tl-title">A1 Πρωτότυπο v0.2 + Cortex PoC</div><div class="tl-desc">Custom frame + πρώτη AI ολοκλήρωση (object detection on-drone)</div></div>
+<div class="tl-item critical"><div class="tl-date">Μήνας 5-6</div><div class="tl-title">DEFEA + Posidonia</div><div class="tl-desc">Πρώτες δημόσιες επιδείξεις. Networking ΥΠΕΘΑ + ναυτιλιακές.</div></div>
+</div>
+</div>
+
+<div>
+<h3 style="margin-bottom:16px">Μήνες 7-18 (Q3 2026 - Q2 2027)</h3>
+<div class="timeline">
+<div class="tl-item"><div class="tl-date">Μήνας 7-9</div><div class="tl-title">Oracle (A2) Σχεδιασμός</div><div class="tl-desc">CAD, αεροδυναμική, πρώτα test articles</div></div>
+<div class="tl-item"><div class="tl-date">Μήνας 8-10</div><div class="tl-title">Nereid (B1) Σχεδιασμός</div><div class="tl-desc">Γάστρα design, composite research, propulsion selection</div></div>
+<div class="tl-item"><div class="tl-date">Μήνας 9-12</div><div class="tl-title">Αμυντικό Pilot / Demo</div><div class="tl-desc">Επίδειξη σε ΕΔ — αξιολόγηση, όχι συμβόλαιο ακόμα</div></div>
+<div class="tl-item critical"><div class="tl-date">Μήνας 10-12</div><div class="tl-title">Αποτελέσματα Grants</div><div class="tl-desc">ΚΡΙΣΙΜΟ: Αν πάρουμε grant = runway extension. Αν όχι = bridge round plan.</div></div>
+<div class="tl-item"><div class="tl-date">Μήνας 12-15</div><div class="tl-title">A2 Πρωτότυπο + Πρώτες Πωλήσεις A1</div><div class="tl-desc">1-3 μονάδες Spectre + training contracts</div></div>
+<div class="tl-item"><div class="tl-date">Μήνας 15-18</div><div class="tl-title">B1 Πρωτότυπο + Θαλάσσιες Δοκιμές</div><div class="tl-desc">Πρώτο USV στο νερό. Σαρωνικός tests.</div></div>
+</div>
+</div>
+</div>
+
+<div class="card" style="margin-top:24px;text-align:center">
+<h3 style="border:none;padding:0;margin-bottom:16px">Ορόσημα Μετά τους 18 Μήνες</h3>
+<div class="grid-3">
+<div style="padding:16px"><div class="badge badge-amber" style="margin-bottom:8px">ΕΤΟΣ 2</div><p style="font-size:.85rem">Break-even, 6-7 ομάδα, A2 λειτουργικό, €470K έσοδα, 2-3 πελάτες</p></div>
+<div style="padding:16px"><div class="badge badge-green" style="margin-bottom:8px">ΕΤΟΣ 3</div><p style="font-size:.85rem">€1.2M έσοδα, €550K κέρδος, 8-10 ομάδα, B1 λειτουργικό, Series A prep</p></div>
+<div style="padding:16px"><div class="badge badge-blue" style="margin-bottom:8px">ΟΡΑΜΑ</div><p style="font-size:.85rem">Ηγέτιδα ΕΕ εταιρεία UAV/USV, €5M+ ARR, 20+ ομάδα</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ ΕΠΟΜΕΝΑ ΒΗΜΑΤΑ ============ -->
+<section id="nextsteps" style="background:linear-gradient(180deg,#0a0f1e,#111827)">
+<div class="wrap">
+<div class="section-header">
+<span class="mono">10 // ΕΠΟΜΕΝΑ ΒΗΜΑΤΑ</span>
+<h2>Τι Πρέπει να Γίνει ΤΩΡΑ</h2>
+<p>Πρακτικά βήματα. Ξεκινάμε αμέσως.</p>
+</div>
+
+<div class="grid-2">
+<div class="card" style="border-top:3px solid var(--red)">
+<h3>🚨 Αυτή την Εβδομάδα</h3>
+<ul class="spec-list">
+<li><strong>Συνάντηση 3+1:</strong> Διαβάστε αυτό. Συζητήστε equity, commitment, part-time→full-time.</li>
+<li><strong>Go / No-Go:</strong> Κάθε ιδρυτής — μέσα ή έξω. Χωρίς «θα δω».</li>
+<li><strong>Επιβεβαίωση CEO commit:</strong> €24K/yr — OK ή χρειάζεται αλλαγή;</li>
+</ul>
+</div>
+
+<div class="card" style="border-top:3px solid var(--amber)">
+<h3>⚡ Μέσα σε 2 Εβδομάδες</h3>
+<ul class="spec-list">
+<li><strong>Δικηγόρος startups:</strong> Εντοπισμός. Κόστος: €3-5K.</li>
+<li><strong>Founders' Agreement draft:</strong> Equity, vesting, roles, cliff, deadlock.</li>
+<li><strong>Κλείσιμο Επένδυσης:</strong> Οριστικοποίηση €200K — εισροή κεφαλαίου.</li>
+<li><strong>Όνομα εταιρείας:</strong> Αν όχι «Triton Labs», αποφασίζουμε τώρα.</li>
+</ul>
+</div>
+</div>
+
+<div class="grid-2" style="margin-top:24px">
+<div class="card" style="border-top:3px solid var(--accent)">
+<h3>📋 Μήνας 1</h3>
+<ul class="spec-list">
+<li>Σύσταση IKE</li>
+<li>Εταιρικός τραπεζικός λογαριασμός</li>
+<li>Μίσθωση εργαστηρίου (80-120m², Αθήνα)</li>
+<li>Αγορά εξοπλισμού (3D printer, εργαλεία)</li>
+<li>Εγγραφή Elevate Greece</li>
+<li>Πρόσληψη E1 + E2</li>
+</ul>
+</div>
+
+<div class="card" style="border-top:3px solid var(--green)">
+<h3>🎯 Μήνες 2-3</h3>
+<ul class="spec-list">
+<li>Spectre live demo (flight data!)</li>
+<li>CEO → EDF Info Days Βρυξέλλες</li>
+<li>Κατάθεση EUDIS + MaJoR + NATO DIANA</li>
+<li>Πρώτη επαφή ΓΕΕΘΑ/ΓΕΣ για pilot</li>
+<li>Πρώτο training workshop (revenue!)</li>
+<li>EASA A1/A3 πιστοποίηση ομάδας</li>
+</ul>
+</div>
+</div>
+
+<div style="text-align:center;margin-top:40px">
+<div class="callout callout-success" style="text-align:center;max-width:700px;margin:0 auto 30px">
+<strong style="color:#fff;font-size:1.1rem">Η αλήθεια:</strong>
+<p style="font-size:.92rem;margin-top:8px">Το Έτος 1 θα είναι δύσκολο. Θα χάσουμε €139K. Part-time ιδρυτές, μικρό budget, μηδέν brand recognition. Αλλά αν πιάσουμε τα ορόσημα — πρωτότυπο, demo, pilot, grant — τότε ο δρόμος ανοίγει. Η ερώτηση δεν είναι αν η αγορά υπάρχει. Η ερώτηση είναι αν θα δεσμευτούμε 100%.</p>
+</div>
+
+<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px">
+<a href="#cover" class="cta-btn">Αρχή</a>
+<a href="#equity" class="cta-btn cta-outline">Equity</a>
+<a href="#financials" class="cta-btn cta-outline">Οικονομικά</a>
+</div>
+</div>
+
+<div style="margin-top:50px;padding-top:30px;border-top:1px solid var(--border);text-align:center">
+<div style="font-family:var(--mono);font-size:.7rem;color:var(--muted);letter-spacing:.1em">TRITON LABS — ΕΣΩΤΕΡΙΚΟ ΕΓΓΡΑΦΟ ΙΔΡΥΤΩΝ & CEO — v2</div>
+<div style="font-family:var(--mono);font-size:.65rem;color:var(--border);margin-top:8px;letter-spacing:.1em">ΕΜΠΙΣΤΕΥΤΙΚΟ — ΑΠΑΓΟΡΕΥΕΤΑΙ Η ΚΟΙΝΟΠΟΙΗΣΗ — ΦΕΒΡΟΥΑΡΙΟΣ 2026</div>
+</div>
+</div>
+</section>
+
+<script>
+window.addEventListener('scroll',function(){var h=document.documentElement,b=document.body;var st=h.scrollTop||b.scrollTop;var sh=h.scrollHeight||b.scrollHeight;var p=(st/(sh-h.clientHeight))*100;document.getElementById('scrollInd').style.width=p+'%';});
+var sections=document.querySelectorAll('section[id]');var navLinks=document.querySelectorAll('nav ul li a');
+window.addEventListener('scroll',function(){var cur='';sections.forEach(function(s){var top=s.offsetTop-100;if(window.pageYOffset>=top) cur=s.getAttribute('id');});navLinks.forEach(function(a){a.classList.remove('active');if(a.getAttribute('href')==='#'+cur) a.classList.add('active');});});
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});},{threshold:0.1});
+document.querySelectorAll('.card,.stat-box,.tl-item,.bar-row,.callout').forEach(function(el){el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity .6s ease, transform .6s ease';obs.observe(el);});
+document.querySelectorAll('nav ul li a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('nav ul').classList.remove('open');});});
+</script>
+</body>
+</html>
